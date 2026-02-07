@@ -5,7 +5,6 @@ dist
 *.md
 docker-compose.yml
 Dockerfile
-nginx.conf
 server/instance
 server/uploads
 server/__pycache__
