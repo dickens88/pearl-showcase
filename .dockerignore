@@ -1,0 +1,12 @@
+node_modules
+dist
+.git
+.gitignore
+*.md
+docker-compose.yml
+Dockerfile
+nginx.conf
+server/instance
+server/uploads
+server/__pycache__
+server/venv

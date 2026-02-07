@@ -1,0 +1,315 @@
+{
+    "nav": {
+        "home": "Home",
+        "gallery": "Collection",
+        "about": "Brand",
+        "knowledge": "Origins",
+        "contact": "Contact",
+        "search": "Search",
+        "menu": "Menu"
+    },
+    "footer": {
+        "tagline": "In 2026, we continue to seek that warmth in the depths of time. Follow our social media to learn more stories behind the pearls.",
+        "quickLinks": "Quick Links",
+        "contactInfo": "Contact Info",
+        "address": "B10, Art & Creative Park, Huangpu District, Shanghai",
+        "copyright": "© 2026 Chronolume . ALL RIGHTS RESERVED."
+    },
+    "home": {
+        "hero": {
+            "year": "Est. 2026",
+            "title_p1": "One pearl",
+            "title_highlight": "a lifetime of light.",
+            "desc": "Every pearl is a poem given to the earth by the deep sea. We are not just carving jewelry, but recording those quiet flowing moments of life."
+        },
+        "curated": {
+            "title": "The Curated Series",
+            "desc": "Selected top wild pearls from the South Pacific, reconstructing the boundaries of classical elegance with minimalist design language.",
+            "link": "Explore Full Collection"
+        },
+        "gallery": {
+            "title": "ART GALLERY"
+        },
+        "about": {
+            "label": "OUR PHILOSOPHY",
+            "headline": "Nature, Symbiosis, and Eternal Narrative",
+            "p1": "Chronolume was born out of a tribute to the 'beauty of imperfection'. As every pearl grows, it inevitably leaves marks of water flow, minerals, and temperature, which is its unique soul.",
+            "p2": "We adhere to sustainable ecological collection and establish deep connections with the marine environment. The birth of every piece follows humility towards nature and ultimate respect for craftsmanship.",
+            "stat_bases": "Cooperative Pearl Farms",
+            "stat_hours": "Avg. Handcraft Hours"
+        },
+        "knowledge_section": {
+            "title": "PEARL STORY",
+            "intro": "Learn how to appreciate a pearl that is truly worth collecting.",
+            "items": {
+                "01": {
+                    "title": "Luster",
+                    "desc": "The luster of high-quality pearls should be like an inner flame, scattering from the core outwards, not just resting on the surface."
+                },
+                "02": {
+                    "title": "Shape",
+                    "desc": "From the ultimate perfect round to the artistic Baroque irregular pearls, every shape has its unique expression language."
+                },
+                "03": {
+                    "title": "Surface",
+                    "desc": "Tiny natural marks are proof of natural attributes. We pursue the perfect balance between cleanliness and natural texture."
+                }
+            }
+        }
+    },
+    "about": {
+        "title": "Brand Story",
+        "subtitle": "OUR STORY",
+        "story_text": "Pearl Elegance was born from a love and pursuit of the beauty of pearls.\n\nWe believe that every pearl is a work of art created by nature and time. In the gentle seawater, after years of precipitation and sharpening, it finally blooms with a unique warm luster. This gift from the deep sea carries the purest aesthetics of nature.\n\nAt the beginning of the brand's establishment, we established the concept of 'selecting nature and conveying elegance'. Our team visited pearl producing areas around the world, from the South Sea in Australia, Ise-Shima in Japan, to Taihu Lake and Zhuji in China, just to find those pearls with perfect luster and pure quality.\n\nIn design, we pursue the fusion of the implicitness of Oriental aesthetics and the exquisiteness of Western craftsmanship. Every piece is crafted with ingenuity, which not only retains the natural beauty of the pearl itself, but also gives it a modern design language. We hope that people who wear Pearl Elegance can feel the tranquility and elegance from the deep sea.\n\nPearl Elegance is not just jewelry, but also an expression of life attitude. We invite you to explore the beauty of pearls and feel the eternal charm of nature's gift.",
+        "philosophy": {
+            "title": "Design Philosophy",
+            "subtitle": "DESIGN PHILOSOPHY",
+            "items": [
+                {
+                    "title": "Beauty of Nature",
+                    "desc": "Respect the natural form of every pearl, retain its unique luster and texture, and let the beauty of nature be revealed."
+                },
+                {
+                    "title": "Heritage of Craftsmanship",
+                    "desc": "Integrating traditional craftsmanship with modern design, every piece embodies the painstaking effort and wisdom of the craftsman."
+                },
+                {
+                    "title": "Eternal Elegance",
+                    "desc": "Pursue eternal beauty beyond fashion, making pearl jewelry a precious item that can be passed down from generation to generation."
+                }
+            ]
+        },
+        "history": {
+            "title": "Brand History",
+            "subtitle": "MILESTONES",
+            "events": [
+                {
+                    "year": "2018",
+                    "text": "Brand founded, starting the journey of pearl art."
+                },
+                {
+                    "year": "2019",
+                    "text": "Established partnership with Australian South Sea Pearl Farms."
+                },
+                {
+                    "year": "2020",
+                    "text": "Launched 'Rhythm of the Sea' series, gaining industry recognition."
+                },
+                {
+                    "year": "2022",
+                    "text": "Opened offline experience space to let more people feel the beauty of pearls."
+                },
+                {
+                    "year": "2024",
+                    "text": "Continuing to explore, presenting more pearl art works for you."
+                }
+            ]
+        }
+    },
+    "gallery": {
+        "title": "Pearl Collection",
+        "subtitle": "GALLERY COLLECTION",
+        "items": {
+            "1": {
+                "name": "Moonlight Earrings",
+                "desc": "Australian South Sea White Pearl, 12-13mm, full luster. 18K gold setting."
+            },
+            "2": {
+                "name": "Ocean Love Necklace",
+                "desc": "Selected freshwater pearls, uniform and round. 7-8mm diameter, 45cm length."
+            },
+            "3": {
+                "name": "Morning Dew Ring",
+                "desc": "Single seawater pearl on 925 silver setting. 9-10mm, pinkish overtone."
+            },
+            "4": {
+                "name": "Starlight Bracelet",
+                "desc": "Small freshwater pearls mixed with 14K gold beads. 5-6mm, 17cm length."
+            },
+            "5": {
+                "name": "Cloud Smoke Studs",
+                "desc": "Akoya pearl studs, 7-7.5mm, high luster, flawless. 18K gold backing."
+            },
+            "6": {
+                "name": "Flowing Light Brooch",
+                "desc": "Baroque pearl with Swarovski crystals. Unique artistic shape."
+            },
+            "7": {
+                "name": "Rain Drops Choker",
+                "desc": "Tahitian black pearl choker, 10-11mm, peacock green overtone."
+            },
+            "8": {
+                "name": "Simple Elegant Pendant",
+                "desc": "Single freshwater pearl pendant, 11-12mm, perfect round. Simple silver setting."
+            }
+        },
+        "categories": {
+            "all": "All",
+            "earrings": "Earrings",
+            "rings": "Rings",
+            "necklaces": "Necklaces",
+            "bracelets": "Bracelets",
+            "brooches": "Brooches",
+            "sets": "Sets",
+            "baroque": "Baroque",
+            "designer": "Designer"
+        }
+    },
+    "knowledge": {
+        "main_title": "Pearl Knowledge",
+        "main_subtitle": "PEARL KNOWLEDGE",
+        "origin_label": "Origin",
+        "tabs": {
+            "types": "Types",
+            "quality": "Quality",
+            "care": "Care",
+            "culture": "Culture"
+        },
+        "content": {
+            "types": {
+                "title": "Types of Pearls",
+                "intro": "Waters around the world nurture different types of pearls, each with its unique charm and value.",
+                "items": [
+                    {
+                        "name": "South Sea Pearl",
+                        "origin": "Australia, Indonesia, Philippines",
+                        "desc": "The largest pearl variety, known for its satin luster.",
+                        "features": [
+                            "Large Size",
+                            "Satin Luster",
+                            "Rare"
+                        ]
+                    },
+                    {
+                        "name": "Akoya Pearl",
+                        "origin": "Japan, China",
+                        "desc": "Classic seawater pearl known for perfect roundness and mirror luster.",
+                        "features": [
+                            "Perfect Round",
+                            "High Luster",
+                            "Classic"
+                        ]
+                    },
+                    {
+                        "name": "Tahitian Pearl",
+                        "origin": "French Polynesia",
+                        "desc": "The only natural black pearl, with mysterious metallic overtones.",
+                        "features": [
+                            "Natural Black",
+                            "Mysterious",
+                            "Unique"
+                        ]
+                    },
+                    {
+                        "name": "Freshwater Pearl",
+                        "origin": "China",
+                        "desc": "Diverse shapes and colors, great value for daily wear.",
+                        "features": [
+                            "Diverse Shapes",
+                            "Rich Colors",
+                            "Affordable"
+                        ]
+                    }
+                ]
+            },
+            "quality": {
+                "title": "Quality Appreciation",
+                "intro": "Understand criteria to better appreciate the unique beauty of each pearl.",
+                "items": [
+                    {
+                        "name": "Luster",
+                        "desc": "The most important factor. High quality means sharp, mirror-like reflections."
+                    },
+                    {
+                        "name": "Surface",
+                        "desc": "Cleanliness of the surface. Tiny natural marks are acceptable."
+                    },
+                    {
+                        "name": "Shape",
+                        "desc": "Round is rarest, but off-round and baroque have unique charm."
+                    },
+                    {
+                        "name": "Size",
+                        "desc": "Larger is generally rarer. Choose based on style and preference."
+                    },
+                    {
+                        "name": "Color",
+                        "desc": "Includes body color and overtones. Choose what matches your skin tone."
+                    },
+                    {
+                        "name": "Matching",
+                        "desc": "Uniformity in size, color, and luster for strands and pairs."
+                    }
+                ]
+            },
+            "care": {
+                "title": "Care Guide",
+                "intro": "Pearls are organic gems requiring gentle care.",
+                "items": [
+                    {
+                        "name": "Avoid Chemicals",
+                        "desc": "Keep away from perfume, makeup, hairspray."
+                    },
+                    {
+                        "name": "Avoid Heat/Dryness",
+                        "desc": "Don't store in direct sunlight or near heaters."
+                    },
+                    {
+                        "name": "Store Separately",
+                        "desc": "Use soft pouches to prevent scratching."
+                    },
+                    {
+                        "name": "Clean Regularly",
+                        "desc": "Wipe with soft cloth after wearing."
+                    },
+                    {
+                        "name": "Wear Often",
+                        "desc": "Skin oils help keep them hydrated."
+                    },
+                    {
+                        "name": "Check Regularly",
+                        "desc": "Restring necklaces every 1-2 years."
+                    }
+                ]
+            },
+            "culture": {
+                "title": "Culture & History",
+                "intro": "Pearls have a long history and rich cultural significance.",
+                "items": [
+                    {
+                        "name": "Eastern Culture",
+                        "desc": "Symbol of purity, wisdom, and wealth."
+                    },
+                    {
+                        "name": "Western Culture",
+                        "desc": "Associated with Aphrodite and nobility."
+                    },
+                    {
+                        "name": "Culturing Revolution",
+                        "desc": "Mikimoto's invention brought pearls to the world."
+                    },
+                    {
+                        "name": "Modern Fashion",
+                        "desc": "Timeless and versatile in modern design."
+                    }
+                ]
+            }
+        }
+    },
+    "contact": {
+        "title": "Contact Us",
+        "subtitle": "GET IN TOUCH",
+        "intro": "Thank you for your interest in Chronolume. \nIf you wish to learn more, please contact us.",
+        "email": "Email",
+        "social": "Social Media",
+        "response_time": "Response Time",
+        "days": "Mon - Fri",
+        "hours": "10:00 - 18:00",
+        "footer_note": "We are dedicated to sharing the beauty of pearl culture and craftsmanship.\nLooking forward to hearing from you."
+    },
+    "cookie": {
+        "message": "We use cookies to analyze website traffic and improve your browsing experience. You can accept or reject.",
+        "accept": "Accept",
+        "reject": "Reject"
+    }
+}

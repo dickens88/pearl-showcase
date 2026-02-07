@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # 后端服务
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: pearl-backend
+    restart: always
+    environment:
+      - SECRET_KEY=your-secret-key-here
+      - JWT_SECRET_KEY=your-jwt-secret-key-here
+    volumes:
+      # 将数据库文件目录映射到宿主机，实现持久化
+      - ./server/instance:/app/instance
+      # 将上传内容目录映射到宿主机
+      - ./server/uploads:/app/uploads
+    networks:
+      - pearl-network
+
+  # 前端服务
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pearl-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - pearl-network
+
+networks:
+  pearl-network:
+    driver: bridge
