@@ -16,7 +16,7 @@ def create_app():
     app.config['JWT_HEADER_TYPE'] = 'Bearer'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
+    app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024  # 20MB max upload
     app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(__file__), 'uploads')
     
     # 确保上传目录存在
