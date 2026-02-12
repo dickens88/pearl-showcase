@@ -25,7 +25,7 @@ git push origin main
 // turbo
 ```powershell
 # 请替换 <USER>, <VM_IP> 和 <PROJECT_DIR> 为您的实际信息
-ssh -o StrictHostKeyChecking=no chenye8879@34.42.237.4 "cd /opt/pearl-showcase/ && git pull origin main && docker-compose up -d --build"
+ssh -o StrictHostKeyChecking=no chenye8879@34.42.237.4 "cd /opt/pearl-showcase/ && sudo git pull origin main && sudo docker-compose up -d --build"
 ```
 
 ---
