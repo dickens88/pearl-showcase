@@ -382,11 +382,39 @@ ol {
   opacity: 0.8;
 }
 
-/* 图片网格 */
+/* 图片网格 - 首页或其他通用 */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-8);
+}
+
+/* 珍品陈列网格 - 密集展示 */
+.jewelry-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 1024px) {
+  .jewelry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Gallery 分类区域 - 桌面端 */
+@media (min-width: 769px) {
+  .gallery-controls-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gallery-view-toggle-wrapper {
+    position: absolute;
+    right: 0;
+  }
 }
 
 /* 瀑布流 */
@@ -633,6 +661,41 @@ ol {
 
   .hero-subtitle {
     letter-spacing: 0.15em;
+  }
+
+  /* Gallery 分类标签移动端优化 */
+  .category-tabs {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    justify-content: flex-start !important;
+    gap: var(--space-6) !important;
+    padding-bottom: var(--space-2);
+  }
+
+  .category-tabs::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+  }
+
+  .category-tabs button {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: var(--text-sm) !important;
+  }
+
+  /* 弹窗详情移动端优化 */
+  .modal-content {
+    flex-direction: column !important;
+    max-width: 100% !important;
+  }
+
+  .modal-overlay {
+    padding: var(--space-4);
   }
 }
 

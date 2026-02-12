@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 function About() {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
     const [content, setContent] = useState(null)
 
     useEffect(() => {
@@ -21,6 +21,8 @@ function About() {
         }
     }
 
+    const isEn = i18n.language === 'en'
+
     const defaultContent = {
         title: t('about.title'),
         story: t('about.story_text'),
@@ -34,7 +36,26 @@ function About() {
         }
     }
 
-    const displayContent = content || defaultContent
+    // 根据语言选择显示内容
+    const getDisplayTitle = () => {
+        if (content) {
+            return isEn ? (content.title_en || content.title) : content.title
+        }
+        return defaultContent.title
+    }
+
+    const getDisplayStory = () => {
+        if (content) {
+            return isEn ? (content.story_en || content.story) : content.story
+        }
+        return defaultContent.story
+    }
+
+    const displayContent = {
+        title: getDisplayTitle(),
+        story: getDisplayStory(),
+        philosophy: content?.philosophy || defaultContent.philosophy
+    }
 
     return (
         <main style={{ paddingTop: '120px', minHeight: '100vh' }}>
@@ -135,69 +156,6 @@ function About() {
                                     lineHeight: '1.8'
                                 }}>
                                     {item.desc}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* 品牌历程 */}
-            <section className="section">
-                <div className="container" style={{ maxWidth: '800px' }}>
-                    <h2 className="section-title">{t('about.history.title')}</h2>
-                    <div className="section-subtitle">{t('about.history.subtitle')}</div>
-
-                    <div style={{ position: 'relative', paddingLeft: 'var(--space-8)' }}>
-                        {/* 时间线 */}
-                        <div style={{
-                            position: 'absolute',
-                            left: '0',
-                            top: '0',
-                            bottom: '0',
-                            width: '2px',
-                            background: 'var(--color-silver)'
-                        }} />
-
-                        {[
-                            { year: '2018', event: t('about.history.events.0.text') },
-                            { year: '2019', event: t('about.history.events.1.text') },
-                            { year: '2020', event: t('about.history.events.2.text') },
-                            { year: '2022', event: t('about.history.events.3.text') },
-                            { year: '2024', event: t('about.history.events.4.text') },
-                        ].map((item, index) => (
-                            <div
-                                key={index}
-                                className="animate-fade-in-up"
-                                style={{
-                                    animationDelay: `${index * 100}ms`,
-                                    position: 'relative',
-                                    marginBottom: 'var(--space-8)',
-                                    paddingLeft: 'var(--space-8)'
-                                }}
-                            >
-                                {/* 时间点 */}
-                                <div style={{
-                                    position: 'absolute',
-                                    left: '-5px',
-                                    top: '4px',
-                                    width: '12px',
-                                    height: '12px',
-                                    borderRadius: '50%',
-                                    background: 'var(--color-champagne)',
-                                    border: '3px solid var(--color-pearl-white)'
-                                }} />
-
-                                <div style={{
-                                    fontFamily: 'var(--font-display)',
-                                    fontSize: 'var(--text-xl)',
-                                    color: 'var(--color-champagne)',
-                                    marginBottom: 'var(--space-2)'
-                                }}>
-                                    {item.year}
-                                </div>
-                                <p style={{ color: 'var(--color-graphite)' }}>
-                                    {item.event}
                                 </p>
                             </div>
                         ))}

@@ -206,16 +206,7 @@ function Home() {
                                     {t('home.about.p2')}
                                 </p>
                             </div>
-                            <div className="about-stats">
-                                <div className="about-stat">
-                                    <div className="about-stat-num">12+</div>
-                                    <div className="about-stat-label">{t('home.about.stat_bases')}</div>
-                                </div>
-                                <div className="about-stat">
-                                    <div className="about-stat-num">190h</div>
-                                    <div className="about-stat-label">{t('home.about.stat_hours')}</div>
-                                </div>
-                            </div>
+
                         </div>
                         <div className="about-image-wrap">
                             <div className="about-image-frame"></div>

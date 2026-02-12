@@ -23,8 +23,10 @@ function ContentEditor() {
             key: 'about',
             label: '品牌故事',
             fields: [
-                { name: 'title', label: '页面标题', type: 'text' },
-                { name: 'story', label: '品牌故事', type: 'textarea' }
+                { name: 'title', label: '页面标题（中文）', type: 'text' },
+                { name: 'title_en', label: '页面标题（英文）', type: 'text' },
+                { name: 'story', label: '品牌故事（中文）', type: 'textarea' },
+                { name: 'story_en', label: '品牌故事（英文）', type: 'textarea' }
             ]
         },
         {

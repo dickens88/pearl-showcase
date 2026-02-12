@@ -376,6 +376,7 @@
     line-height: 2;
     letter-spacing: 0.05em;
     margin-bottom: 2rem;
+    white-space: pre-line;
 }
 
 .about-stats {

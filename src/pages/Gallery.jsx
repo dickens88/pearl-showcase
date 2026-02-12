@@ -1,20 +1,29 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import '../styles/pagination.css'
 
 function Gallery() {
     const { t, i18n } = useTranslation()
     const [searchParams] = useSearchParams()
     const [jewelry, setJewelry] = useState([])
     const [loading, setLoading] = useState(true)
-    const [viewMode, setViewMode] = useState('grid') // grid or masonry
     const [selectedCategory, setSelectedCategory] = useState('all')
     const [selectedItem, setSelectedItem] = useState(null)
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1)
+    const ITEMS_PER_PAGE = 30 // 6 columns * 5 rows
+
     useEffect(() => {
         loadJewelry()
     }, [])
+
+    // Reset to first page when category changes
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [selectedCategory])
 
     useEffect(() => {
         // 如果URL中有id参数，打开对应饰品详情
@@ -81,6 +90,18 @@ function Gallery() {
         }
     }
 
+    // 计算分页数据
+    const filteredItems = jewelry.filter(item => selectedCategory === 'all' || item.category === selectedCategory)
+    const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE)
+    const paginatedItems = filteredItems.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+
+    const handlePageChange = (newPage) => {
+        if (newPage >= 1 && newPage <= totalPages) {
+            setCurrentPage(newPage)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+    }
+
     if (loading) {
         return (
             <main style={{ paddingTop: '120px', minHeight: '100vh' }}>
@@ -98,180 +119,114 @@ function Gallery() {
                     <h1 className="section-title">{t('gallery.title')}</h1>
                     <div className="section-subtitle">{t('gallery.subtitle')}</div>
 
-                    {/* 视图切换 */}
-                    {/* 分类和视图切换容器 */}
-                    <div style={{
-                        position: 'relative',
+
+                    {/* 分类标签 */}
+                    <div className="category-tabs" style={{
                         display: 'flex',
+                        gap: 'var(--space-8)',
                         justifyContent: 'center',
-                        alignItems: 'center',
                         marginBottom: 'var(--space-12)',
                         marginTop: 'var(--space-8)'
                     }}>
-                        {/* 中间分类 Tab */}
-                        <div className="category-tabs" style={{
-                            display: 'flex',
-                            gap: 'var(--space-8)',
-                            justifyContent: 'center'
-                        }}>
-                            {['all', 'earrings', 'rings', 'necklaces', 'bracelets', 'brooches', 'sets', 'baroque', 'designer'].map((cat) => (
-                                <button
-                                    key={cat}
-                                    onClick={() => setSelectedCategory(cat)}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        padding: 'var(--space-2) 0',
-                                        fontSize: 'var(--text-base)',
-                                        color: selectedCategory === cat ? 'var(--color-charcoal)' : 'var(--color-gray-500)',
-                                        fontFamily: 'var(--font-serif)',
-                                        cursor: 'pointer',
-                                        position: 'relative',
-                                        transition: 'color var(--transition-base)'
-                                    }}
-                                >
-                                    {t(`gallery.categories.${cat}`)}
-                                    {selectedCategory === cat && (
-                                        <span style={{
-                                            position: 'absolute',
-                                            bottom: '-4px',
-                                            left: '0',
-                                            width: '100%',
-                                            height: '1px',
-                                            background: 'var(--color-champagne)'
-                                        }} />
-                                    )}
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* 右侧视图切换开关 */}
-                        <div style={{
-                            position: 'absolute',
-                            right: '0',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: 'var(--space-3)'
-                        }}>
-                            <span style={{
-                                fontSize: 'var(--text-xs)',
-                                color: 'var(--color-gray-500)',
-                                letterSpacing: '0.05em'
-                            }}>
-                                {viewMode === 'grid' ? 'GRID' : 'MASONRY'}
-                            </span>
+                        {['all', 'earrings', 'rings', 'necklaces', 'bracelets', 'brooches', 'sets', 'baroque', 'designer'].map((cat) => (
                             <button
-                                onClick={() => setViewMode(viewMode === 'grid' ? 'masonry' : 'grid')}
+                                key={cat}
+                                onClick={() => setSelectedCategory(cat)}
                                 style={{
-                                    width: '40px',
-                                    height: '20px',
-                                    borderRadius: '20px',
-                                    background: 'var(--color-light-gray)',
-                                    border: '1px solid var(--color-gray-300)',
-                                    position: 'relative',
+                                    background: 'none',
+                                    border: 'none',
+                                    padding: 'var(--space-2) 0',
+                                    fontSize: 'var(--text-base)',
+                                    color: selectedCategory === cat ? 'var(--color-charcoal)' : 'var(--color-gray-500)',
+                                    fontFamily: 'var(--font-serif)',
                                     cursor: 'pointer',
-                                    padding: '0',
-                                    transition: 'all var(--transition-base)'
+                                    position: 'relative',
+                                    transition: 'color var(--transition-base)'
                                 }}
                             >
-                                <div style={{
-                                    width: '16px',
-                                    height: '16px',
-                                    borderRadius: '50%',
-                                    background: 'var(--color-charcoal)',
-                                    position: 'absolute',
-                                    top: '1px',
-                                    left: viewMode === 'grid' ? '1px' : '21px',
-                                    transition: 'all var(--transition-base)',
-                                    boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
-                                }} />
+                                {t(`gallery.categories.${cat}`)}
+                                {selectedCategory === cat && (
+                                    <span style={{
+                                        position: 'absolute',
+                                        bottom: '-4px',
+                                        left: '0',
+                                        width: '100%',
+                                        height: '1px',
+                                        background: 'var(--color-champagne)'
+                                    }} />
+                                )}
                             </button>
-                        </div>
+                        ))}
                     </div>
 
                     {/* 展示区域 */}
-                    {viewMode === 'grid' ? (
-                        <div className="gallery-grid">
-                            {jewelry
-                                .filter(item => selectedCategory === 'all' || item.category === selectedCategory)
-                                .map((item, index) => (
-                                    <div
-                                        key={item.id}
-                                        className="card animate-fade-in-up"
-                                        style={{ animationDelay: `${index * 50}ms`, cursor: 'pointer' }}
-                                        onClick={() => openDetail(item)}
-                                    >
-                                        <div style={{ overflow: 'hidden' }}>
-                                            {item.images && item.images[0] ? (
-                                                <img
-                                                    src={item.images[0].path}
-                                                    alt={isEn ? (item.name_en || item.name) : item.name}
-                                                    className="card-image"
-                                                    loading="lazy"
-                                                />
-                                            ) : (
-                                                <div
-                                                    className="card-image"
-                                                    style={{
-                                                        background: `linear-gradient(135deg, 
+                    <div className="jewelry-grid">
+                        {paginatedItems.map((item, index) => (
+                            <div
+                                key={item.id}
+                                className="card animate-fade-in-up"
+                                style={{ animationDelay: `${index * 50}ms`, cursor: 'pointer' }}
+                                onClick={() => openDetail(item)}
+                            >
+                                <div style={{ overflow: 'hidden' }}>
+                                    {item.images && item.images[0] ? (
+                                        <img
+                                            src={item.images[0].path}
+                                            alt={isEn ? (item.name_en || item.name) : item.name}
+                                            className="card-image"
+                                            loading="lazy"
+                                        />
+                                    ) : (
+                                        <div
+                                            className="card-image"
+                                            style={{
+                                                background: `linear-gradient(135deg, 
                             hsl(${35 + index * 8}, 18%, ${88 - index * 2}%) 0%, 
                             hsl(${40 + index * 8}, 22%, ${82 - index * 2}%) 100%
                           )`
-                                                    }}
-                                                />
-                                            )}
-                                        </div>
-                                        <div className="card-content">
-                                            <h3 className="card-title">{isEn ? (item.name_en || item.name) : item.name}</h3>
-                                            <p className="card-desc" style={{
-                                                display: '-webkit-box',
-                                                WebkitLineClamp: 2,
-                                                WebkitBoxOrient: 'vertical',
-                                                overflow: 'hidden'
-                                            }}>
-                                                {isEn ? (item.description_en || item.description) : item.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                ))}
+                                            }}
+                                        />
+                                    )}
+                                </div>
+                                <div className="card-content">
+                                    <h3 className="card-title">{isEn ? (item.name_en || item.name) : item.name}</h3>
+                                    <p className="card-desc" style={{
+                                        display: '-webkit-box',
+                                        WebkitLineClamp: 2,
+                                        WebkitBoxOrient: 'vertical',
+                                        overflow: 'hidden'
+                                    }}>
+                                        {isEn ? (item.description_en || item.description) : item.description}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* 分页与空状态 */}
+                    {filteredItems.length === 0 ? (
+                        <div style={{ textAlign: 'center', padding: 'var(--space-12)', color: 'var(--color-gray-500)' }}>
+                            {t('common.noData') || 'No items found'}
                         </div>
-                    ) : (
-                        <div className="masonry">
-                            {jewelry
-                                .filter(item => selectedCategory === 'all' || item.category === selectedCategory)
-                                .map((item, index) => (
-                                    <div
-                                        key={item.id}
-                                        className="masonry-item card animate-fade-in-up"
-                                        style={{ animationDelay: `${index * 50}ms`, cursor: 'pointer' }}
-                                        onClick={() => openDetail(item)}
-                                    >
-                                        <div style={{ overflow: 'hidden' }}>
-                                            {item.images && item.images[0] ? (
-                                                <img
-                                                    src={item.images[0].path}
-                                                    alt={isEn ? (item.name_en || item.name) : item.name}
-                                                    loading="lazy"
-                                                    style={{ width: '100%' }}
-                                                />
-                                            ) : (
-                                                <div
-                                                    style={{
-                                                        paddingBottom: `${80 + (index % 3) * 30}%`,
-                                                        background: `linear-gradient(135deg, 
-                            hsl(${35 + index * 8}, 18%, ${88 - index * 2}%) 0%, 
-                            hsl(${40 + index * 8}, 22%, ${82 - index * 2}%) 100%
-                          )`
-                                                    }}
-                                                />
-                                            )}
-                                        </div>
-                                        <div className="card-content">
-                                            <h3 className="card-title">{isEn ? (item.name_en || item.name) : item.name}</h3>
-                                            <p className="card-desc">{isEn ? (item.description_en || item.description) : item.description}</p>
-                                        </div>
-                                    </div>
-                                ))}
+                    ) : totalPages > 1 && (
+                        <div className="pagination">
+                            <button
+                                className="pagination-btn"
+                                disabled={currentPage === 1}
+                                onClick={() => handlePageChange(currentPage - 1)}
+                            >
+                                &lt;
+                            </button>
+                            <span className="pagination-info">
+                                {currentPage} / {totalPages}
+                            </span>
+                            <button
+                                className="pagination-btn"
+                                disabled={currentPage === totalPages}
+                                onClick={() => handlePageChange(currentPage + 1)}
+                            >
+                                &gt;
+                            </button>
                         </div>
                     )}
                 </div>
@@ -386,7 +341,8 @@ function Gallery() {
                             <p style={{
                                 lineHeight: '2',
                                 color: 'var(--color-graphite)',
-                                flex: '1'
+                                flex: '1',
+                                whiteSpace: 'pre-wrap'
                             }}>
                                 {isEn ? (selectedItem.description_en || selectedItem.description) : selectedItem.description}
                             </p>

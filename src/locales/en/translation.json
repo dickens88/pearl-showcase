@@ -8,6 +8,9 @@
         "search": "Search",
         "menu": "Menu"
     },
+    "common": {
+        "noData": "No data available"
+    },
     "footer": {
         "tagline": "In 2026, we continue to seek that warmth in the depths of time. Follow our social media to learn more stories behind the pearls.",
         "quickLinks": "Quick Links",
@@ -20,11 +23,11 @@
             "year": "Est. 2026",
             "title_p1": "One pearl",
             "title_highlight": "a lifetime of light.",
-            "desc": "Every pearl is a poem given to the earth by the deep sea. We are not just carving jewelry, but recording those quiet flowing moments of life."
+            "desc": "Meticulously selected premium seawater pearls, condensing the luster of the deep ocean; carefully chosen high-value freshwater pearls, soothing the textures of daily life; featuring design-rich French Baroque styles, paying homage to the undefined beauty of nature."
         },
         "curated": {
             "title": "The Curated Series",
-            "desc": "Selected top wild pearls from the South Pacific, reconstructing the boundaries of classical elegance with minimalist design language.",
+            "desc": "Selected freshwater and seawater pearls, with minimalist design language, let the luster of the pearls themselves take center stage, keeping inner peace in the noisy world, accompanying you through the years.",
             "link": "Explore Full Collection"
         },
         "gallery": {
@@ -32,9 +35,9 @@
         },
         "about": {
             "label": "OUR PHILOSOPHY",
-            "headline": "Nature, Symbiosis, and Eternal Narrative",
-            "p1": "Chronolume was born out of a tribute to the 'beauty of imperfection'. As every pearl grows, it inevitably leaves marks of water flow, minerals, and temperature, which is its unique soul.",
-            "p2": "We adhere to sustainable ecological collection and establish deep connections with the marine environment. The birth of every piece follows humility towards nature and ultimate respect for craftsmanship.",
+            "headline": "Warmth, Time, and Timeless Narrative",
+            "p1": "Anlan implies peaceful seas and clear rivers, a time of tranquility;\nShiguang means picking up every glimmer of gentle light in the long river of time.\nChronolume, with time as the measure and pearl luster as the rhyme, hides Oriental elegance and blends French romance, achieving a wearing aesthetic unique to contemporary women.",
+            "p2": "One pearl of Anlan, picking up the glimmer of time.\nNot chasing trends, only guarding quality; not limited by style, only pleasing oneself.\n\nChronolume uses pearls as a medium, balancing quality and style, embracing diverse aesthetics, allowing every independent, elegant woman who loves life to meet the pearl luster that fits her soul here, finding calm confidence in a square inch and blooming exclusive brilliance.",
             "stat_bases": "Cooperative Pearl Farms",
             "stat_hours": "Avg. Handcraft Hours"
         },
@@ -60,7 +63,7 @@
     "about": {
         "title": "Brand Story",
         "subtitle": "OUR STORY",
-        "story_text": "Pearl Elegance was born from a love and pursuit of the beauty of pearls.\n\nWe believe that every pearl is a work of art created by nature and time. In the gentle seawater, after years of precipitation and sharpening, it finally blooms with a unique warm luster. This gift from the deep sea carries the purest aesthetics of nature.\n\nAt the beginning of the brand's establishment, we established the concept of 'selecting nature and conveying elegance'. Our team visited pearl producing areas around the world, from the South Sea in Australia, Ise-Shima in Japan, to Taihu Lake and Zhuji in China, just to find those pearls with perfect luster and pure quality.\n\nIn design, we pursue the fusion of the implicitness of Oriental aesthetics and the exquisiteness of Western craftsmanship. Every piece is crafted with ingenuity, which not only retains the natural beauty of the pearl itself, but also gives it a modern design language. We hope that people who wear Pearl Elegance can feel the tranquility and elegance from the deep sea.\n\nPearl Elegance is not just jewelry, but also an expression of life attitude. We invite you to explore the beauty of pearls and feel the eternal charm of nature's gift.",
+        "story_text": "Chronolume was born from a love and pursuit of the beauty of pearls.\n\nWe believe that every pearl is a work of art created by nature and time. In the gentle seawater, after years of precipitation and tempering, it finally blooms with a unique warm luster. This gift from the deep sea carries the purest aesthetics of nature.\n\nAt the beginning of the brand's establishment, we established the philosophy of 'selecting nature and conveying elegance'. Our team visited pearl producing areas around the world, from the South Sea in Australia, Ise-Shima in Japan, to Taihu Lake and Zhuji in China, just to find those pearls with perfect luster and pure quality.\n\nIn design, we pursue the fusion of the subtlety of Oriental aesthetics and the exquisiteness of Western craftsmanship. Every piece is crafted with ingenuity, which not only retains the natural beauty of the pearl itself, but also gives it a modern design language. We hope that people who wear Chronolume can feel the tranquility and elegance from the deep sea.\n\nChronolume is not just jewelry, but also an expression of life attitude. We invite you to explore the beauty of pearls and feel the eternal charm of nature's gift.",
         "philosophy": {
             "title": "Design Philosophy",
             "subtitle": "DESIGN PHILOSOPHY",
@@ -85,7 +88,7 @@
             "events": [
                 {
                     "year": "2018",
-                    "text": "Brand founded, starting the journey of pearl art."
+                    "text": "Chronolume brand founded, starting the journey of pearl art."
                 },
                 {
                     "year": "2019",
@@ -107,7 +110,7 @@
         }
     },
     "gallery": {
-        "title": "Pearl Collection",
+        "title": "Chronolume",
         "subtitle": "GALLERY COLLECTION",
         "items": {
             "1": {
