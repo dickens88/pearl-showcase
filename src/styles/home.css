@@ -220,7 +220,8 @@
 }
 
 .curated-item-title {
-    font-size: 1.25rem;
+    font-family: 'Microsoft YaHei', '微软雅黑', sans-serif;
+    font-size: 1.125rem;
     font-weight: 300;
     letter-spacing: 0.1em;
     color: #2A2624;
@@ -228,6 +229,7 @@
 }
 
 .curated-item-desc {
+    font-family: 'Microsoft YaHei', '微软雅黑', sans-serif;
     font-size: 0.875rem;
     color: #8D7B6D;
 }

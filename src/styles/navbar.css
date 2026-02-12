@@ -107,23 +107,31 @@
 .navbar-toggle {
     display: none;
     flex-direction: column;
-    gap: 5px;
-    padding: 0.5rem;
-    background: none;
-    border: none;
+    gap: 6px;
+    padding: 8px 10px;
+    background: transparent;
+    border: 1px solid rgba(42, 38, 36, 0.15);
+    border-radius: 6px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggle:hover {
+    border-color: #B08968;
+    background: rgba(176, 137, 104, 0.05);
 }
 
 .navbar-toggle span {
     display: block;
-    width: 24px;
+    width: 22px;
     height: 2px;
     background: #2A2624;
+    border-radius: 2px;
     transition: all 0.3s ease;
 }
 
 .navbar-toggle.open span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(6px, 6px);
 }
 
 .navbar-toggle.open span:nth-child(2) {
@@ -131,7 +139,7 @@
 }
 
 .navbar-toggle.open span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* Mobile Responsive */
@@ -162,5 +170,6 @@
 
     .navbar-toggle {
         display: flex;
+        margin-right: 1rem;
     }
 }

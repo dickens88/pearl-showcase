@@ -342,7 +342,8 @@ function Gallery() {
                                 lineHeight: '2',
                                 color: 'var(--color-graphite)',
                                 flex: '1',
-                                whiteSpace: 'pre-wrap'
+                                whiteSpace: 'pre-wrap',
+                                fontFamily: "'Microsoft YaHei', '微软雅黑', sans-serif"
                             }}>
                                 {isEn ? (selectedItem.description_en || selectedItem.description) : selectedItem.description}
                             </p>

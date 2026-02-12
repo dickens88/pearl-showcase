@@ -113,4 +113,4 @@ if __name__ == '__main__':
     print('地址: http://localhost:5000')
     print('默认管理员: admin / pearl2024')
     print('=' * 50)
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5000, host='0.0.0.0')
