@@ -12,11 +12,28 @@ function GalleryManager() {
         title_en: '',
         alt: ''
     })
+    const [translating, setTranslating] = useState({})
     const fileInputRef = useRef(null)
 
     useEffect(() => {
         loadImages()
     }, [])
+
+    const handleTranslate = async (field, text, callback) => {
+        if (!text) return;
+        setTranslating(prev => ({ ...prev, [field]: true }));
+        try {
+            const data = await api.translate(text);
+            if (data.translatedText) {
+                callback(data.translatedText);
+            }
+        } catch (error) {
+            console.error('翻译失败:', error);
+            alert('翻译失败，请稍后重试');
+        } finally {
+            setTranslating(prev => ({ ...prev, [field]: false }));
+        }
+    };
 
     const loadImages = async () => {
         try {
@@ -137,7 +154,18 @@ function GalleryManager() {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
                     <div className="form-group" style={{ margin: 0 }}>
-                        <label className="form-label">标题 (中文)</label>
+                        <div className="flex-between">
+                            <label className="form-label">标题 (中文)</label>
+                            <button
+                                type="button"
+                                className="btn-text"
+                                style={{ fontSize: '11px', color: 'var(--color-champagne)', padding: 0 }}
+                                onClick={() => handleTranslate('title', formData.title, (val) => setFormData({ ...formData, title_en: val }))}
+                                disabled={translating['title']}
+                            >
+                                {translating['title'] ? '...' : '翻译'}
+                            </button>
+                        </div>
                         <input
                             type="text"
                             className="form-input"
@@ -344,7 +372,18 @@ function GalleryManager() {
                         </div>
 
                         <div className="form-group">
-                            <label className="form-label">标题 (中文)</label>
+                            <div className="flex-between">
+                                <label className="form-label">标题 (中文)</label>
+                                <button
+                                    type="button"
+                                    className="btn-text"
+                                    style={{ fontSize: '12px', color: 'var(--color-champagne)' }}
+                                    onClick={() => handleTranslate('edit_title', formData.title, (val) => setFormData({ ...formData, title_en: val }))}
+                                    disabled={translating['edit_title']}
+                                >
+                                    {translating['edit_title'] ? '翻译中...' : '翻译到英文'}
+                                </button>
+                            </div>
                             <input
                                 type="text"
                                 className="form-input"

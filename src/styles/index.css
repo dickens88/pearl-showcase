@@ -863,6 +863,23 @@ ol {
   color: var(--color-charcoal);
 }
 
+.btn-text {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-text:hover {
+  opacity: 0.8;
+}
+
+.btn-text:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .btn-danger {
   background: #E74C3C;
   color: white;

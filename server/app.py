@@ -51,6 +51,7 @@ def create_app():
     from routes.admin import admin_bp
     from routes.analytics import analytics_bp
     from routes.gallery import gallery_bp
+    from routes.utils import utils_bp
     
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(jewelry_bp, url_prefix='/api/jewelry')
@@ -59,6 +60,7 @@ def create_app():
     app.register_blueprint(admin_bp, url_prefix='/api/admin')
     app.register_blueprint(analytics_bp, url_prefix='/api/analytics')
     app.register_blueprint(gallery_bp, url_prefix='/api/gallery')
+    app.register_blueprint(utils_bp, url_prefix='/api/utils')
     
     # 静态文件服务
     @app.route('/uploads/<path:filename>')

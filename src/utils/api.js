@@ -247,6 +247,15 @@ export const api = {
             body: JSON.stringify({ order: orderList })
         })
         return res.json()
+    },
+
+    // 翻译
+    async translate(text) {
+        const res = await request('/utils/translate', {
+            method: 'POST',
+            body: JSON.stringify({ text })
+        })
+        return res.json()
     }
 }
 

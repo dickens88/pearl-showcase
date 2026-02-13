@@ -17,6 +17,7 @@ function JewelryManager() {
         is_featured: false,
         order_index: 0
     })
+    const [translating, setTranslating] = useState({}) // 用于跟踪哪些字段正在翻译
 
     const CATEGORIES = {
         'earrings': '耳饰',
@@ -134,6 +135,22 @@ function JewelryManager() {
             currentCats.push(catId);
         }
         setFormData({ ...formData, category: currentCats.join(',') });
+    };
+
+    const handleTranslate = async (field, text, callback) => {
+        if (!text) return;
+        setTranslating(prev => ({ ...prev, [field]: true }));
+        try {
+            const data = await api.translate(text);
+            if (data.translatedText) {
+                callback(data.translatedText);
+            }
+        } catch (error) {
+            console.error('翻译失败:', error);
+            alert('翻译失败，请稍后重试');
+        } finally {
+            setTranslating(prev => ({ ...prev, [field]: false }));
+        }
     };
 
     const resetForm = () => {
@@ -292,7 +309,18 @@ function JewelryManager() {
                             {/* 第一行：中英文名称 */}
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)', marginBottom: 'var(--space-5)' }}>
                                 <div className="form-group" style={{ marginBottom: 0 }}>
-                                    <label className="form-label">饰品名称 (中文)</label>
+                                    <div className="flex-between">
+                                        <label className="form-label">饰品名称 (中文)</label>
+                                        <button
+                                            type="button"
+                                            className="btn-text"
+                                            style={{ fontSize: '12px', color: 'var(--color-champagne)' }}
+                                            onClick={() => handleTranslate('name', formData.name, (val) => setFormData({ ...formData, name_en: val }))}
+                                            disabled={translating['name']}
+                                        >
+                                            {translating['name'] ? '翻译中...' : '翻译到英文'}
+                                        </button>
+                                    </div>
                                     <input
                                         type="text"
                                         className="form-input"
@@ -317,7 +345,18 @@ function JewelryManager() {
 
                             {/* 第二行：中文描述 */}
                             <div className="form-group">
-                                <label className="form-label">描述 (中文)</label>
+                                <div className="flex-between">
+                                    <label className="form-label">描述 (中文)</label>
+                                    <button
+                                        type="button"
+                                        className="btn-text"
+                                        style={{ fontSize: '12px', color: 'var(--color-champagne)' }}
+                                        onClick={() => handleTranslate('desc', formData.description, (val) => setFormData({ ...formData, description_en: val }))}
+                                        disabled={translating['desc']}
+                                    >
+                                        {translating['desc'] ? '翻译中...' : '翻译到英文'}
+                                    </button>
+                                </div>
                                 <textarea
                                     className="form-input form-textarea"
                                     value={formData.description}
@@ -487,7 +526,22 @@ function JewelryManager() {
                                                 </div>
                                                 <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-3)' }}>
                                                     <div className="form-group" style={{ marginBottom: 0 }}>
-                                                        <label className="form-label" style={{ fontSize: '12px', marginBottom: '4px' }}>中文描述</label>
+                                                        <div className="flex-between">
+                                                            <label className="form-label" style={{ fontSize: '12px', marginBottom: '4px' }}>中文描述</label>
+                                                            <button
+                                                                type="button"
+                                                                className="btn-text"
+                                                                style={{ fontSize: '10px', color: 'var(--color-champagne)', padding: 0 }}
+                                                                onClick={() => handleTranslate(`img_${index}`, img.description, (val) => {
+                                                                    const newImages = [...editingItem.images];
+                                                                    newImages[index] = { ...newImages[index], description_en: val };
+                                                                    setEditingItem({ ...editingItem, images: newImages });
+                                                                })}
+                                                                disabled={translating[`img_${index}`]}
+                                                            >
+                                                                {translating[`img_${index}`] ? '...' : '翻译'}
+                                                            </button>
+                                                        </div>
                                                         <textarea
                                                             placeholder="此图片的中文说明"
                                                             className="form-input"
