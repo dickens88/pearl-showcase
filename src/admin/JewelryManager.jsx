@@ -18,6 +18,17 @@ function JewelryManager() {
         order_index: 0
     })
 
+    const CATEGORIES = {
+        'earrings': '耳饰',
+        'rings': '戒指',
+        'necklaces': '项链',
+        'bracelets': '手链',
+        'brooches': '胸针',
+        'sets': '套装',
+        'baroque': '巴洛克',
+        'designer': '设计师款'
+    };
+
     useEffect(() => {
         loadJewelry()
     }, [])
@@ -115,6 +126,16 @@ function JewelryManager() {
         setEditingItem({ ...editingItem, images: newImages });
     };
 
+    const handleCategoryToggle = (catId) => {
+        let currentCats = formData.category ? formData.category.split(',').filter(c => c) : [];
+        if (currentCats.includes(catId)) {
+            currentCats = currentCats.filter(c => c !== catId);
+        } else {
+            currentCats.push(catId);
+        }
+        setFormData({ ...formData, category: currentCats.join(',') });
+    };
+
     const resetForm = () => {
         setEditingItem(null)
         setShowForm(false)
@@ -182,20 +203,15 @@ function JewelryManager() {
                                         <strong>{item.name}</strong><br />
                                         <small style={{ color: 'var(--color-graphite)' }}>{item.name_en}</small>
                                     </td>
-                                    <td><span className="badge">{
-                                        {
-                                            'earrings': '耳饰',
-                                            'rings': '戒指',
-                                            'necklaces': '项链',
-                                            'bracelets': '手链',
-                                            'brooches': '胸针',
-                                            'sets': '套装',
-                                            'baroque': '巴洛克',
-                                            'designer': '设计师款',
-                                            'pendants': '套装',
-                                            '吊坠': '套装'
-                                        }[item.category] || item.category || '未分类'
-                                    }</span></td>
+                                    <td>
+                                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                                            {item.category ? item.category.split(',').map(catId => (
+                                                <span key={catId} className="badge">
+                                                    {CATEGORIES[catId] || catId}
+                                                </span>
+                                            )) : <span className="badge" style={{ opacity: 0.5 }}>未分类</span>}
+                                        </div>
+                                    </td>
                                     <td style={{
                                         maxWidth: '300px',
                                         overflow: 'hidden',
@@ -324,25 +340,39 @@ function JewelryManager() {
                             </div>
 
                             {/* 第四行：类别和排序 */}
-                            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 'var(--space-4)', marginBottom: 'var(--space-5)' }}>
-                                <div className="form-group" style={{ marginBottom: 0 }}>
-                                    <label className="form-label">类别</label>
-                                    <select
-                                        className="form-input"
-                                        value={formData.category}
-                                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                                    >
-                                        <option value="earrings">耳饰</option>
-                                        <option value="rings">戒指</option>
-                                        <option value="necklaces">项链</option>
-                                        <option value="bracelets">手链</option>
-                                        <option value="brooches">胸针</option>
-                                        <option value="sets">套装</option>
-                                        <option value="baroque">巴洛克</option>
-                                        <option value="designer">设计师款</option>
-                                    </select>
+                            <div className="form-group">
+                                <label className="form-label">类别 (可多选)</label>
+                                <div style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
+                                    gap: 'var(--space-2)',
+                                    background: '#f8f9fa',
+                                    padding: 'var(--space-3)',
+                                    borderRadius: '8px',
+                                    border: '1px solid #eee'
+                                }}>
+                                    {Object.entries(CATEGORIES).map(([id, label]) => (
+                                        <label key={id} style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '8px',
+                                            cursor: 'pointer',
+                                            padding: '4px 0',
+                                            fontSize: '14px'
+                                        }}>
+                                            <input
+                                                type="checkbox"
+                                                checked={formData.category ? formData.category.split(',').includes(id) : false}
+                                                onChange={() => handleCategoryToggle(id)}
+                                                style={{ width: '16px', height: '16px' }}
+                                            />
+                                            {label}
+                                        </label>
+                                    ))}
                                 </div>
+                            </div>
 
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--space-4)', marginBottom: 'var(--space-5)' }}>
                                 <div className="form-group" style={{ marginBottom: 0 }}>
                                     <label className="form-label">排序序号</label>
                                     <input

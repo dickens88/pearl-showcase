@@ -91,7 +91,10 @@ function Gallery() {
     }
 
     // 计算分页数据
-    const filteredItems = jewelry.filter(item => selectedCategory === 'all' || item.category === selectedCategory)
+    const filteredItems = jewelry.filter(item =>
+        selectedCategory === 'all' ||
+        (item.category && item.category.split(',').includes(selectedCategory))
+    )
     const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE)
     const paginatedItems = filteredItems.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
 
