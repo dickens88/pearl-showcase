@@ -112,6 +112,10 @@ def update_image(id):
         image.jewelry_id = data['jewelry_id'] if data['jewelry_id'] else None
     if 'order_index' in data:
         image.order_index = data['order_index']
+    if 'description' in data:
+        image.description = data['description']
+    if 'description_en' in data:
+        image.description_en = data['description_en']
     
     db.session.commit()
     

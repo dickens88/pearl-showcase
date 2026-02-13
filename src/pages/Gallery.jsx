@@ -345,7 +345,14 @@ function Gallery() {
                                 whiteSpace: 'pre-wrap',
                                 fontFamily: "'Microsoft YaHei', '微软雅黑', sans-serif"
                             }}>
-                                {isEn ? (selectedItem.description_en || selectedItem.description) : selectedItem.description}
+                                {(() => {
+                                    const currentImage = selectedItem.images[currentImageIndex];
+                                    if (isEn) {
+                                        return currentImage?.description_en || selectedItem.description_en || selectedItem.description;
+                                    } else {
+                                        return currentImage?.description || selectedItem.description;
+                                    }
+                                })()}
                             </p>
 
                             {/* 缩略图 */}

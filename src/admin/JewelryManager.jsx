@@ -39,6 +39,15 @@ function JewelryManager() {
         try {
             if (editingItem) {
                 await api.updateJewelry(editingItem.id, formData)
+                // 同时保存图片的描述
+                if (editingItem.images && editingItem.images.length > 0) {
+                    await Promise.all(editingItem.images.map(img =>
+                        api.updateImage(img.id, {
+                            description: img.description,
+                            description_en: img.description_en
+                        })
+                    ))
+                }
             } else {
                 await api.createJewelry(formData)
             }
@@ -364,6 +373,84 @@ function JewelryManager() {
                                     取消
                                 </button>
                             </div>
+
+                            {/* 图片特定说明编辑 */}
+                            {editingItem && editingItem.images && editingItem.images.length > 0 && (
+                                <div className="form-group" style={{ marginTop: 'var(--space-8)', borderTop: '1px solid #efefef', paddingTop: 'var(--space-6)' }}>
+                                    <label className="form-label" style={{ fontSize: '16px', fontWeight: 600, marginBottom: 'var(--space-4)' }}>
+                                        各展示图特定描述 (可选)
+                                    </label>
+                                    <div style={{ display: 'grid', gap: 'var(--space-4)' }}>
+                                        {editingItem.images.map((img, index) => (
+                                            <div key={img.id} style={{
+                                                display: 'flex',
+                                                gap: 'var(--space-4)',
+                                                padding: 'var(--space-3)',
+                                                background: '#f8f9fa',
+                                                borderRadius: '8px',
+                                                border: '1px solid #eee'
+                                            }}>
+                                                <div style={{ position: 'relative' }}>
+                                                    <img
+                                                        src={img.path}
+                                                        style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '4px' }}
+                                                        alt=""
+                                                    />
+                                                    <div style={{
+                                                        position: 'absolute',
+                                                        top: '-8px',
+                                                        left: '-8px',
+                                                        background: 'var(--color-champagne)',
+                                                        color: 'white',
+                                                        width: '24px',
+                                                        height: '24px',
+                                                        borderRadius: '50%',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        fontSize: '12px'
+                                                    }}>
+                                                        {index + 1}
+                                                    </div>
+                                                </div>
+                                                <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-3)' }}>
+                                                    <div className="form-group" style={{ marginBottom: 0 }}>
+                                                        <label className="form-label" style={{ fontSize: '12px', marginBottom: '4px' }}>中文描述</label>
+                                                        <textarea
+                                                            placeholder="此图片的中文说明"
+                                                            className="form-input"
+                                                            style={{ height: '70px', fontSize: '13px', padding: '8px' }}
+                                                            value={img.description || ''}
+                                                            onChange={(e) => {
+                                                                const newImages = [...editingItem.images];
+                                                                newImages[index] = { ...newImages[index], description: e.target.value };
+                                                                setEditingItem({ ...editingItem, images: newImages });
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className="form-group" style={{ marginBottom: 0 }}>
+                                                        <label className="form-label" style={{ fontSize: '12px', marginBottom: '4px' }}>英文描述</label>
+                                                        <textarea
+                                                            placeholder="English description"
+                                                            className="form-input"
+                                                            style={{ height: '70px', fontSize: '13px', padding: '8px' }}
+                                                            value={img.description_en || ''}
+                                                            onChange={(e) => {
+                                                                const newImages = [...editingItem.images];
+                                                                newImages[index] = { ...newImages[index], description_en: e.target.value };
+                                                                setEditingItem({ ...editingItem, images: newImages });
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <p style={{ fontSize: '12px', color: '#888', marginTop: 'var(--space-3)' }}>
+                                        * 提示：为特定图片设置描述后，在前台切换到该图时将优先显示此处内容。若留空则显示饰品主描述。
+                                    </p>
+                                </div>
+                            )}
                         </form>
                     </div>
                 </div>

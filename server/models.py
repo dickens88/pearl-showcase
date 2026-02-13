@@ -63,6 +63,8 @@ class Image(db.Model):
     original_name = db.Column(db.String(255))
     path = db.Column(db.String(500), nullable=False)
     jewelry_id = db.Column(db.Integer, db.ForeignKey('jewelry.id'), nullable=True)
+    description = db.Column(db.Text)  # 为该图片添加特定说明
+    description_en = db.Column(db.Text) # 英文特定说明
     order_index = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -73,6 +75,8 @@ class Image(db.Model):
             'original_name': self.original_name,
             'path': self.path,
             'jewelry_id': self.jewelry_id,
+            'description': self.description,
+            'description_en': self.description_en,
             'order_index': self.order_index
         }
 
