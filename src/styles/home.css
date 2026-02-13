@@ -161,12 +161,13 @@
 }
 
 .curated-link {
-    font-size: 0.875rem;
-    letter-spacing: 0.2em;
-    color: #B08968;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #926647;
     text-decoration: none;
-    padding-bottom: 0.25rem;
-    border-bottom: 1px solid #B08968;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid #926647;
     transition: all 0.3s ease;
     white-space: nowrap;
 }
