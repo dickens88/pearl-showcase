@@ -39,12 +39,13 @@ function JewelryManager() {
         try {
             if (editingItem) {
                 await api.updateJewelry(editingItem.id, formData)
-                // 同时保存图片的描述
+                // 同时保存图片的描述和排序
                 if (editingItem.images && editingItem.images.length > 0) {
-                    await Promise.all(editingItem.images.map(img =>
+                    await Promise.all(editingItem.images.map((img, index) =>
                         api.updateImage(img.id, {
                             description: img.description,
-                            description_en: img.description_en
+                            description_en: img.description_en,
+                            order_index: index  // 使用当前在数组中的索引作为顺序
                         })
                     ))
                 }
@@ -101,6 +102,18 @@ function JewelryManager() {
             console.error('更新失败')
         }
     }
+
+    const moveImage = (index, direction) => {
+        if (!editingItem || !editingItem.images) return;
+        const newImages = [...editingItem.images];
+        const targetIndex = index + direction;
+
+        if (targetIndex < 0 || targetIndex >= newImages.length) return;
+
+        // 交换位置
+        [newImages[index], newImages[targetIndex]] = [newImages[targetIndex], newImages[index]];
+        setEditingItem({ ...editingItem, images: newImages });
+    };
 
     const resetForm = () => {
         setEditingItem(null)
@@ -374,11 +387,11 @@ function JewelryManager() {
                                 </button>
                             </div>
 
-                            {/* 图片特定说明编辑 */}
+                            {/* 图片特定说明/顺序编辑 */}
                             {editingItem && editingItem.images && editingItem.images.length > 0 && (
                                 <div className="form-group" style={{ marginTop: 'var(--space-8)', borderTop: '1px solid #efefef', paddingTop: 'var(--space-6)' }}>
                                     <label className="form-label" style={{ fontSize: '16px', fontWeight: 600, marginBottom: 'var(--space-4)' }}>
-                                        各展示图特定描述 (可选)
+                                        各展示图特定描述与排序
                                     </label>
                                     <div style={{ display: 'grid', gap: 'var(--space-4)' }}>
                                         {editingItem.images.map((img, index) => (
@@ -408,9 +421,38 @@ function JewelryManager() {
                                                         display: 'flex',
                                                         alignItems: 'center',
                                                         justifyContent: 'center',
-                                                        fontSize: '12px'
+                                                        fontSize: '12px',
+                                                        zIndex: 2
                                                     }}>
                                                         {index + 1}
+                                                    </div>
+                                                    <div style={{
+                                                        position: 'absolute',
+                                                        bottom: '4px',
+                                                        right: '4px',
+                                                        display: 'flex',
+                                                        flexDirection: 'column',
+                                                        gap: '2px',
+                                                        zIndex: 2
+                                                    }}>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-icon"
+                                                            style={{ padding: '2px', background: 'rgba(255,255,255,0.8)', border: '1px solid #ddd' }}
+                                                            onClick={() => moveImage(index, -1)}
+                                                            disabled={index === 0}
+                                                        >
+                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M18 15l-6-6-6 6" /></svg>
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-icon"
+                                                            style={{ padding: '2px', background: 'rgba(255,255,255,0.8)', border: '1px solid #ddd' }}
+                                                            onClick={() => moveImage(index, 1)}
+                                                            disabled={index === editingItem.images.length - 1}
+                                                        >
+                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M6 9l6 6 6-6" /></svg>
+                                                        </button>
                                                     </div>
                                                 </div>
                                                 <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-3)' }}>
@@ -447,7 +489,7 @@ function JewelryManager() {
                                         ))}
                                     </div>
                                     <p style={{ fontSize: '12px', color: '#888', marginTop: 'var(--space-3)' }}>
-                                        * 提示：为特定图片设置描述后，在前台切换到该图时将优先显示此处内容。若留空则显示饰品主描述。
+                                        * 提示：上方数字为展示顺序。点击图片右下角箭头可调整排序。设置特定描述后，前台切换到该图时将优先显示。
                                     </p>
                                 </div>
                             )}
