@@ -96,7 +96,16 @@ function Home() {
                     <p className="hero-desc">
                         {t('home.hero.desc')}
                     </p>
-                    <div className="hero-scroll">
+                    <div
+                        className="hero-scroll"
+                        onClick={() => {
+                            const nextSection = document.querySelector('.curated-section');
+                            if (nextSection) {
+                                nextSection.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                             <path d="M12 5v14M5 12l7 7 7-7" />
                         </svg>
