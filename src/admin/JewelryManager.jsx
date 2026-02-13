@@ -168,6 +168,31 @@ function JewelryManager() {
         })
     }
 
+    const translateAllImages = async () => {
+        if (!editingItem || !editingItem.images) return;
+        const confirmMsg = "确定要翻译所有图片的描述吗？这会覆盖已有的英文描述。";
+        if (!window.confirm(confirmMsg)) return;
+
+        const newImages = [...editingItem.images];
+        for (let i = 0; i < newImages.length; i++) {
+            const img = newImages[i];
+            if (img.description) {
+                try {
+                    setTranslating(prev => ({ ...prev, [`img_${i}`]: true }));
+                    const data = await api.translate(img.description);
+                    if (data.translatedText) {
+                        newImages[i] = { ...newImages[i], description_en: data.translatedText };
+                    }
+                } catch (error) {
+                    console.error('翻译失败:', error);
+                } finally {
+                    setTranslating(prev => ({ ...prev, [`img_${i}`]: false }));
+                }
+            }
+        }
+        setEditingItem({ ...editingItem, images: newImages });
+    };
+
     if (loading) {
         return (
             <AdminLayout title="饰品管理">
@@ -459,9 +484,19 @@ function JewelryManager() {
                             {/* 图片特定说明/顺序编辑 */}
                             {editingItem && editingItem.images && editingItem.images.length > 0 && (
                                 <div className="form-group" style={{ marginTop: 'var(--space-8)', borderTop: '1px solid #efefef', paddingTop: 'var(--space-6)' }}>
-                                    <label className="form-label" style={{ fontSize: '16px', fontWeight: 600, marginBottom: 'var(--space-4)' }}>
-                                        各展示图特定描述与排序
-                                    </label>
+                                    <div className="flex-between" style={{ marginBottom: 'var(--space-4)' }}>
+                                        <label className="form-label" style={{ fontSize: '16px', fontWeight: 600, margin: 0 }}>
+                                            各展示图特定描述与排序
+                                        </label>
+                                        <button
+                                            type="button"
+                                            className="btn-text"
+                                            style={{ fontSize: '12px', color: 'var(--color-champagne)', border: '1px solid var(--color-champagne)', padding: '2px 8px', borderRadius: '4px' }}
+                                            onClick={translateAllImages}
+                                        >
+                                            ✨ 一键翻译所有描述
+                                        </button>
+                                    </div>
                                     <div style={{ display: 'grid', gap: 'var(--space-4)' }}>
                                         {editingItem.images.map((img, index) => (
                                             <div key={img.id} style={{

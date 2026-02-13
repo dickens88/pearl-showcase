@@ -9,6 +9,7 @@ function ContentEditor() {
     const [message, setMessage] = useState('')
     const [uploading, setUploading] = useState(false)
     const [uploadError, setUploadError] = useState('')
+    const [translating, setTranslating] = useState({})
 
     const pageConfigs = [
         {
@@ -46,6 +47,22 @@ function ContentEditor() {
     useEffect(() => {
         loadContent()
     }, [])
+
+    const handleTranslate = async (field, text, callback) => {
+        if (!text) return;
+        setTranslating(prev => ({ ...prev, [field]: true }));
+        try {
+            const data = await api.translate(text);
+            if (data.translatedText) {
+                callback(data.translatedText);
+            }
+        } catch (error) {
+            console.error('翻译失败:', error);
+            alert('翻译失败，请稍后重试');
+        } finally {
+            setTranslating(prev => ({ ...prev, [field]: false }));
+        }
+    };
 
     const loadContent = async () => {
         try {
@@ -173,19 +190,35 @@ function ContentEditor() {
 
                     {currentConfig?.fields.map(field => (
                         <div key={field.name} className="form-group">
-                            <label className="form-label">
-                                {field.label}
-                                {field.help && (
-                                    <span style={{
-                                        marginLeft: 'var(--space-2)',
-                                        fontSize: 'var(--text-sm)',
-                                        color: 'var(--color-graphite)',
-                                        fontWeight: 'normal'
-                                    }}>
-                                        ({field.help})
-                                    </span>
+                            <div className="flex-between">
+                                <label className="form-label">
+                                    {field.label}
+                                    {field.help && (
+                                        <span style={{
+                                            marginLeft: 'var(--space-2)',
+                                            fontSize: 'var(--text-sm)',
+                                            color: 'var(--color-graphite)',
+                                            fontWeight: 'normal'
+                                        }}>
+                                            ({field.help})
+                                        </span>
+                                    )}
+                                </label>
+                                {field.name.endsWith('_en') === false && currentConfig.fields.some(f => f.name === field.name + '_en' || (field.name === 'story' && f.name === 'story_en') || (field.name === 'title' && f.name === 'title_en')) && (
+                                    <button
+                                        type="button"
+                                        className="btn-text"
+                                        style={{ fontSize: '12px', color: 'var(--color-champagne)' }}
+                                        onClick={() => {
+                                            const targetField = field.name === 'story' ? 'story_en' : (field.name === 'title' ? 'title_en' : field.name + '_en');
+                                            handleTranslate(field.name, currentContent[field.name], (val) => handleChange(targetField, val));
+                                        }}
+                                        disabled={translating[field.name]}
+                                    >
+                                        {translating[field.name] ? '翻译中...' : '翻译到英文'}
+                                    </button>
                                 )}
-                            </label>
+                            </div>
                             {field.type === 'image' ? (
                                 <div>
                                     {currentContent[field.name] && (
