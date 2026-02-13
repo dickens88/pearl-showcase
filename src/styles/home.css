@@ -109,6 +109,14 @@
     }
 }
 
+@media (max-width: 768px) {
+    .hero-year {
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        margin-bottom: 1rem;
+    }
+}
+
 /* ==========================================
    Curated Series Section
    ========================================== */
@@ -405,6 +413,13 @@
 .about-image-wrap {
     position: relative;
     order: 1;
+}
+
+@media (max-width: 768px) {
+    .about-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.25em;
+    }
 }
 
 @media (min-width: 768px) {

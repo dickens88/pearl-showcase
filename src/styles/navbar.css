@@ -144,9 +144,19 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    .navbar-container {
+        height: 4rem;
+        padding: 0 1rem;
+    }
+
+    .navbar-logo {
+        font-size: 1.1rem;
+        letter-spacing: 0.15em;
+    }
+
     .navbar-links {
         position: fixed;
-        top: 5rem;
+        top: 4rem;
         left: 0;
         right: 0;
         background: rgba(255, 255, 255, 0.95);

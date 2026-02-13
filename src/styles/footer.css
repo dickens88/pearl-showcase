@@ -126,6 +126,14 @@
     gap: 1.5rem;
 }
 
+@media (max-width: 768px) {
+    .footer-logo {
+        font-size: 1.25rem;
+        letter-spacing: 0.25em;
+        margin-bottom: 1rem;
+    }
+}
+
 .footer-social {
     color: #8D7B6D;
     transition: color 0.3s ease;
