@@ -182,7 +182,12 @@ function Gallery() {
                                 <div style={{ overflow: 'hidden' }}>
                                     {item.images && item.images[0] ? (
                                         <img
-                                            src={item.images[0].path}
+                                            src={item.images[0].thumbnail_path || item.images[0].path}
+                                            onError={(e) => {
+                                                if (item.images[0].thumbnail_path && e.target.src.includes(item.images[0].thumbnail_path)) {
+                                                    e.target.src = item.images[0].path
+                                                }
+                                            }}
                                             alt={isEn ? (item.name_en || item.name) : item.name}
                                             className="card-image"
                                             loading="lazy"
@@ -387,7 +392,12 @@ function Gallery() {
                                             }}
                                         >
                                             <img
-                                                src={img.path}
+                                                src={img.thumbnail_path || img.path}
+                                                onError={(e) => {
+                                                    if (img.thumbnail_path && e.target.src.includes(img.thumbnail_path)) {
+                                                        e.target.src = img.path
+                                                    }
+                                                }}
                                                 alt=""
                                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                             />

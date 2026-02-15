@@ -74,6 +74,7 @@ class Image(db.Model):
             'filename': self.filename,
             'original_name': self.original_name,
             'path': self.path,
+            'thumbnail_path': f"{self.path.rsplit('.', 1)[0]}_thumb.{self.path.rsplit('.', 1)[1]}",
             'jewelry_id': self.jewelry_id,
             'description': self.description,
             'description_en': self.description_en,

@@ -5,6 +5,5 @@ Flask-SQLAlchemy==3.1.1
 Werkzeug==3.0.1
 python-dotenv==1.0.0
 deep-translator==1.11.4
-# Pillow is optional - used for image compression
-# If installation fails, the app will work without image compression
-# pip install Pillow --only-binary :all:
+# Pillow is required for image compression and thumbnail generation
+Pillow

@@ -44,6 +44,25 @@ def compress_image(filepath, max_size=(1200, 1200), quality=85):
         print(f'压缩图片失败: {e}')
 
 
+def create_thumbnail(filepath, max_size=(400, 400), quality=80):
+    """生成缩略图（如果Pillow可用）"""
+    if not PILLOW_AVAILABLE:
+        return
+    
+    try:
+        path_parts = filepath.rsplit('.', 1)
+        thumb_path = f"{path_parts[0]}_thumb.{path_parts[1]}"
+        
+        with PILImage.open(filepath) as img:
+            if img.mode in ('RGBA', 'P'):
+                img = img.convert('RGB')
+            
+            img.thumbnail(max_size, PILImage.Resampling.LANCZOS)
+            img.save(thumb_path, 'JPEG', quality=quality, optimize=True)
+    except Exception as e:
+        print(f'生成缩略图失败: {e}')
+
+
 @images_bp.route('/upload', methods=['POST'])
 @jwt_required()
 def upload_images():
@@ -74,6 +93,9 @@ def upload_images():
             
             # 压缩图片
             compress_image(filepath)
+            
+            # 生成缩略图
+            create_thumbnail(filepath)
             
             # 保存到数据库
             image = Image(
