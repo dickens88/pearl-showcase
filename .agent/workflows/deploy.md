@@ -25,7 +25,7 @@ git push origin main
 // turbo
 ```powershell
 # 自动部署到指定的 GCP 虚拟机
-ssh -o StrictHostKeyChecking=no chenye8879@34.42.237.4 "cd /opt/pearl-showcase/ && git pull origin main && docker compose up -d --build"
+ssh -o StrictHostKeyChecking=no chenye8879@34.63.163.247 "cd /opt/pearl-showcase/ && git pull origin main && docker compose up -d --build"
 ```
 
 ---
