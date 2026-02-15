@@ -14,6 +14,9 @@ def get_jewelry():
     limit = request.args.get('limit', type=int)
     all_items = request.args.get('all', 'false').lower() == 'true'
     
+    
+    page = request.args.get('page', type=int)
+    
     query = Jewelry.query
     
     if not all_items:
@@ -23,6 +26,17 @@ def get_jewelry():
         query = query.filter_by(is_featured=True)
     
     query = query.order_by(Jewelry.order_index.asc())
+    
+    if page:
+        per_page = limit if limit else 10
+        pagination = query.paginate(page=page, per_page=per_page, error_out=False)
+        return jsonify({
+            'items': [j.to_dict() for j in pagination.items],
+            'total': pagination.total,
+            'pages': pagination.pages,
+            'page': pagination.page,
+            'per_page': pagination.per_page
+        })
     
     if limit:
         query = query.limit(limit)

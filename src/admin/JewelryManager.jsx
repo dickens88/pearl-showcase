@@ -17,7 +17,11 @@ function JewelryManager() {
         is_featured: false,
         order_index: 0
     })
-    const [translating, setTranslating] = useState({}) // 用于跟踪哪些字段正在翻译
+    const [translating, setTranslating] = useState({})
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(1)
+    const ITEMS_PER_PAGE = 10
 
     const CATEGORIES = {
         'earrings': '耳饰',
@@ -32,12 +36,26 @@ function JewelryManager() {
 
     useEffect(() => {
         loadJewelry()
-    }, [])
+    }, [currentPage])
 
     const loadJewelry = async () => {
+        setLoading(true)
         try {
-            const data = await api.getJewelry({ all: true })
-            setJewelry(data)
+            const data = await api.getJewelry({
+                all: true,
+                page: currentPage,
+                limit: ITEMS_PER_PAGE
+            })
+
+            if (data.items) {
+                setJewelry(data.items)
+                setTotalPages(data.pages)
+                if (currentPage > data.pages && data.pages > 0) {
+                    setCurrentPage(data.pages)
+                }
+            } else {
+                setJewelry(data)
+            }
         } catch (error) {
             console.error('加载失败')
         } finally {
@@ -307,6 +325,31 @@ function JewelryManager() {
                             ))}
                         </tbody>
                     </table>
+                )}
+
+                {/* Pagination Controls */}
+                {totalPages > 1 && (
+                    <div className="pagination" style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginTop: '20px', alignItems: 'center' }}>
+                        <button
+                            className="btn btn-outline"
+                            disabled={currentPage === 1}
+                            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                            style={{ padding: '6px 16px' }}
+                        >
+                            上一页
+                        </button>
+                        <span style={{ fontSize: '14px', color: 'var(--color-charcoal)' }}>
+                            第 {currentPage} 页 / 共 {totalPages} 页
+                        </span>
+                        <button
+                            className="btn btn-outline"
+                            disabled={currentPage === totalPages}
+                            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                            style={{ padding: '6px 16px' }}
+                        >
+                            下一页
+                        </button>
+                    </div>
                 )}
             </div>
 
