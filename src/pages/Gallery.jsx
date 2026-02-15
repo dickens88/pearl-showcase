@@ -179,19 +179,26 @@ function Gallery() {
                                 style={{ animationDelay: `${index * 50}ms`, cursor: 'pointer' }}
                                 onClick={() => openDetail(item)}
                             >
-                                <div style={{ overflow: 'hidden' }}>
+                                <div style={{ overflow: 'hidden', position: 'relative' }}>
                                     {item.images && item.images[0] ? (
-                                        <img
-                                            src={item.images[0].thumbnail_path || item.images[0].path}
-                                            onError={(e) => {
-                                                if (item.images[0].thumbnail_path && e.target.src.includes(item.images[0].thumbnail_path)) {
-                                                    e.target.src = item.images[0].path
-                                                }
-                                            }}
-                                            alt={isEn ? (item.name_en || item.name) : item.name}
-                                            className="card-image"
-                                            loading="lazy"
-                                        />
+                                        <div className="image-container" style={{ aspectRatio: '3/4', position: 'relative' }}>
+                                            <img
+                                                src={item.images[0].thumb_path || item.images[0].path}
+                                                alt={isEn ? (item.name_en || item.name) : item.name}
+                                                className="card-image"
+                                                loading="lazy"
+                                                onLoad={(e) => {
+                                                    e.target.parentElement.classList.add('loaded');
+                                                }}
+                                            />
+                                            <div className="image-placeholder" style={{
+                                                position: 'absolute',
+                                                inset: 0,
+                                                zIndex: 1,
+                                                transition: 'opacity 0.6s ease',
+                                                visibility: 'visible'
+                                            }}></div>
+                                        </div>
                                     ) : (
                                         <div
                                             className="card-image"
@@ -392,12 +399,7 @@ function Gallery() {
                                             }}
                                         >
                                             <img
-                                                src={img.thumbnail_path || img.path}
-                                                onError={(e) => {
-                                                    if (img.thumbnail_path && e.target.src.includes(img.thumbnail_path)) {
-                                                        e.target.src = img.path
-                                                    }
-                                                }}
+                                                src={img.path}
                                                 alt=""
                                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                             />

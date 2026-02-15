@@ -585,6 +585,21 @@ ol {
   animation: shimmer 1.5s infinite;
 }
 
+.image-container.loaded .image-placeholder {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.image-container img {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.image-container.loaded img {
+  opacity: 1;
+}
+
 /* ==========================================
    响应式设计
    ========================================== */

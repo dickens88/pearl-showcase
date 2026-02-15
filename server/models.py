@@ -62,6 +62,7 @@ class Image(db.Model):
     filename = db.Column(db.String(255), nullable=False)
     original_name = db.Column(db.String(255))
     path = db.Column(db.String(500), nullable=False)
+    thumb_path = db.Column(db.String(500)) # 缩略图路径
     jewelry_id = db.Column(db.Integer, db.ForeignKey('jewelry.id'), nullable=True)
     description = db.Column(db.Text)  # 为该图片添加特定说明
     description_en = db.Column(db.Text) # 英文特定说明
@@ -74,7 +75,7 @@ class Image(db.Model):
             'filename': self.filename,
             'original_name': self.original_name,
             'path': self.path,
-            'thumbnail_path': f"{self.path.rsplit('.', 1)[0]}_thumb.{self.path.rsplit('.', 1)[1]}",
+            'thumb_path': self.thumb_path or self.path,
             'jewelry_id': self.jewelry_id,
             'description': self.description,
             'description_en': self.description_en,
@@ -129,6 +130,7 @@ class GalleryImage(db.Model):
     filename = db.Column(db.String(255), nullable=False)
     original_name = db.Column(db.String(255))
     path = db.Column(db.String(500), nullable=False)
+    thumb_path = db.Column(db.String(500)) # 缩略图路径
     title = db.Column(db.String(100))  # 图片标题
     title_en = db.Column(db.String(100))  # 英文标题
     alt = db.Column(db.String(200))  # alt描述
@@ -142,6 +144,7 @@ class GalleryImage(db.Model):
             'filename': self.filename,
             'original_name': self.original_name,
             'path': self.path,
+            'thumb_path': self.thumb_path or self.path,
             'title': self.title,
             'title_en': self.title_en,
             'alt': self.alt,

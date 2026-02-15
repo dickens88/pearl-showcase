@@ -23,20 +23,57 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-def compress_image(filepath, max_size=(1200, 1200), quality=85):
-    """压缩图片（如果Pillow可用）"""
+def compress_image(filepath, max_size=(1200, 1200), thumb_size=(400, 400), quality=85):
+    """压缩图片并生成缩略图（如果Pillow可用）"""
     if not PILLOW_AVAILABLE:
-        return
+        return None  # 跳过压缩
     
     try:
+        # 获取基础文件名和路径
+        base_dir = os.path.dirname(filepath)
+        filename = os.path.basename(filepath)
+        name, ext = os.path.splitext(filename)
+        
+        # 定义WebP文件名
+        webp_name = f"{name}.webp"
+        webp_path = os.path.join(base_dir, webp_name)
+        
+        # 定义缩略图文件名
+        thumb_name = f"thumb_{name}.webp"
+        thumb_path = os.path.join(base_dir, thumb_name)
+        
         with PILImage.open(filepath) as img:
+            # 处理方向信息
+            try:
+                from PIL import ImageOps
+                img = ImageOps.exif_transpose(img)
+            except:
+                pass
+                
+            # 转换为RGB
             if img.mode in ('RGBA', 'P'):
                 img = img.convert('RGB')
-            img.thumbnail(max_size, PILImage.Resampling.LANCZOS)
-            img.save(filepath, 'JPEG', quality=quality, optimize=True)
+            elif img.mode != 'RGB':
+                img = img.convert('RGB')
+            
+            # 1. 保存主图 WebP
+            main_img = img.copy()
+            main_img.thumbnail(max_size, PILImage.Resampling.LANCZOS)
+            main_img.save(webp_path, 'WEBP', quality=quality, optimize=True)
+            
+            # 2. 保存缩略图 WebP
+            thumb_img = img.copy()
+            thumb_img.thumbnail(thumb_size, PILImage.Resampling.LANCZOS)
+            thumb_img.save(thumb_path, 'WEBP', quality=quality, optimize=True)
+            
+        # 如果原始文件不是WebP，且转换成功，可以删除原始文件
+        if filepath != webp_path and os.path.exists(webp_path):
+            os.remove(filepath)
+            
+        return webp_name, thumb_name
     except Exception as e:
         print(f'压缩图片失败: {e}')
-
+        return None, None
 
 @gallery_bp.route('', methods=['GET'])
 def get_gallery_images():
@@ -81,17 +118,21 @@ def upload_gallery_image():
     filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
     file.save(filepath)
     
-    # 压缩图片
-    compress_image(filepath)
+    # 压缩图片并生成缩略图
+    new_filename, thumb_filename = compress_image(filepath)
+    
+    # 如果转换成功，更新信息
+    final_filename = new_filename if new_filename else filename
     
     # 获取当前最大排序值
     max_order = db.session.query(db.func.max(GalleryImage.order_index)).scalar() or 0
     
     # 保存到数据库
     gallery_image = GalleryImage(
-        filename=filename,
+        filename=final_filename,
         original_name=secure_filename(file.filename),
-        path=f'/uploads/{filename}',
+        path=f'/uploads/{final_filename}',
+        thumb_path=f'/uploads/{thumb_filename}' if thumb_filename else f'/uploads/{final_filename}',
         title=request.form.get('title', ''),
         title_en=request.form.get('title_en', ''),
         alt=request.form.get('alt', ''),
