@@ -14,7 +14,15 @@ function Gallery() {
 
     // Pagination state
     const [currentPage, setCurrentPage] = useState(1)
-    const ITEMS_PER_PAGE = 30 // 6 columns * 5 rows
+    const [itemsPerPage, setItemsPerPage] = useState(window.innerWidth > 768 ? 24 : 30)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setItemsPerPage(window.innerWidth > 768 ? 24 : 30)
+        }
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
 
     useEffect(() => {
         loadJewelry()
@@ -95,8 +103,8 @@ function Gallery() {
         selectedCategory === 'all' ||
         (item.category && item.category.split(',').includes(selectedCategory))
     )
-    const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE)
-    const paginatedItems = filteredItems.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+    const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
+    const paginatedItems = filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
 
     const handlePageChange = (newPage) => {
         if (newPage >= 1 && newPage <= totalPages) {
