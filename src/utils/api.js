@@ -1,3 +1,5 @@
+import { compressImage } from './imageCompress'
+
 const API_BASE = '/api'
 
 // 获取认证头
@@ -172,7 +174,12 @@ export const api = {
     // 图片上传
     async uploadImages(files, jewelryId = null) {
         const formData = new FormData()
-        files.forEach(file => formData.append('images', file))
+        // 浏览器端压缩：images[i] 为主图，thumbs[i] 为对应缩略图
+        const compressed = await Promise.all(files.map(compressImage))
+        compressed.forEach(({ main, thumb }) => {
+            formData.append('images', main)
+            formData.append('thumbs', thumb || new Blob([]))
+        })
         if (jewelryId) formData.append('jewelry_id', jewelryId)
 
         const token = localStorage.getItem('adminToken')
@@ -205,7 +212,9 @@ export const api = {
 
     async uploadGalleryImage(file, title = '', titleEn = '', alt = '') {
         const formData = new FormData()
-        formData.append('image', file)
+        const { main, thumb } = await compressImage(file)
+        formData.append('image', main)
+        if (thumb) formData.append('thumb', thumb)
         formData.append('title', title)
         formData.append('title_en', titleEn)
         formData.append('alt', alt)

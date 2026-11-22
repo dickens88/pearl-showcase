@@ -84,16 +84,6 @@ function AdminLogin() {
                         {loading ? '登录中...' : '登录'}
                     </button>
                 </form>
-
-                <p style={{
-                    marginTop: 'var(--space-8)',
-                    fontSize: 'var(--text-xs)',
-                    color: 'var(--color-graphite)',
-                    textAlign: 'center',
-                    opacity: '0.6'
-                }}>
-                    默认账号：admin / pearl2024
-                </p>
             </div>
         </div>
     )

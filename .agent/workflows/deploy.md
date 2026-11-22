@@ -1,36 +1,57 @@
 ---
-description: 自动部署到 GCP VM (Commit -> Push -> SSH -> Pull -> Docker Build)
+description: 部署到 Cloudflare Workers（测试 -> 构建 -> wrangler deploy -> 线上验证）
 ---
 
-## 🚀 自动化部署工作流
+## 🚀 部署工作流（Cloudflare Workers）
 
-此工作流将自动执行：本地提交 -> 推送代码 -> SSH 登录服务器 -> 拉取最新代码 -> 重新构建并启动 Docker 容器。
+网站运行在 Cloudflare Worker `pearl-showcase` 上（前端静态文件 + API + R2 图片），域名 `alsgvip.com` / `www.alsgvip.com`。
+完整说明见 README「4. 部署」。旧的 GCP VM / Docker / SSH 部署已废弃，**不要再使用**。
 
-### 📋 前置要求
-1. **Git 配置**: 确保本地代码已关联远程仓库（当前为 `origin main`）。
-2. **SSH 免密登录**: 确保已将本地公钥添加到 GCP VM 的 `~/.ssh/authorized_keys`。
-3. **环境变量**: 为了方便使用，您可以将以下变量替换为实际值，或在运行脚本时手动修改。
-
----
-
-### 第一步：提交本地更改并推送至仓库
+### 前置检查
 // turbo
 ```powershell
-git add .
-git commit -m "Auto-deploy: update code"
-git push origin main
+npx.cmd wrangler whoami
+```
+未登录时运行 `npx.cmd wrangler login`，让用户在浏览器里点 Allow（不能代替用户授权）。
+
+### 第一步：接口回归测试
+// turbo
+```powershell
+npm.cmd run test:worker
+```
+必须看到 `ALL PASSED`（Windows 上末尾的 libuv `Assertion failed` 可忽略）。
+
+### 第二步：如有新的数据库迁移，先应用到线上 D1
+```powershell
+npm.cmd run db:migrate:remote
 ```
 
-### 第二步：远程服务器执行更新任务
+### 第三步：构建并部署
 // turbo
 ```powershell
-# 自动部署到指定的 GCP 虚拟机
-ssh -o StrictHostKeyChecking=no chenye8879@34.63.163.247 "cd /opt/pearl-showcase/ && git pull origin main && docker compose up -d --build"
+npm.cmd run deploy
+```
+
+### 第四步：线上验证
+// turbo
+```powershell
+curl.exe -s https://alsgvip.com/api/health
+curl.exe -s -o NUL -w "%{http_code}\n" https://alsgvip.com/
+curl.exe -s -o NUL -w "%{http_code}\n" https://alsgvip.com/api/admin/stats
+```
+期望：health 返回 `{"status":"ok",...}`，首页 `200`，未鉴权的 stats 接口 `401`。
+
+### 第五步：提交代码
+```powershell
+git add .
+git commit -m "<描述本次改动>"
+git push origin main
 ```
 
 ---
 
 ### 💡 维护说明
-- 如果 Docker 镜像构建缓慢，可以考虑在远程执行 `docker system prune -f` 清理缓存。
-- 若部署失败，请检查远程服务器的 Git 是否有权限访问您的仓库（推荐使用 SSH Key 在服务器上访问 GitHub）。
-- 如果您的 GCP VM 使用了非默认端口，请在 `ssh` 命令后添加 `-p <端口号>`。
+- Secret（`JWT_SECRET`、`ADMIN_PASSWORD`）不会被部署覆盖；查看：`npx.cmd wrangler secret list`（不会显示值）。
+- 查看线上日志：`npx.cmd wrangler tail`，或 Cloudflare 后台 Workers → pearl-showcase → Observability。
+- 回滚：`npx.cmd wrangler rollback`（回到上一个版本；数据库迁移不会回滚）。
+- 若 `npm install` 失败（esbuild ENOENT），是 Windows 路径过长，把项目移到短路径再装。

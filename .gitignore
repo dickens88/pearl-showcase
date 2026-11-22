@@ -25,3 +25,8 @@ server/uploads/
 # OS
 .DS_Store
 Thumbs.db
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
