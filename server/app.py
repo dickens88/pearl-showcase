@@ -1,5 +1,5 @@
 import os
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from werkzeug.security import generate_password_hash
@@ -38,6 +38,17 @@ def create_app():
         print(f"缺少Token: {error}")
         return {'message': f'缺少认证Token: {error}'}, 401
     
+    @jwt.token_verification_loader
+    def restrict_user_tokens(jwt_header, jwt_payload):
+        # 前台用户 Token（role=user）只能访问 /api/user 下的接口，不能进入后台管理接口
+        if jwt_payload.get('role') == 'user':
+            return request.blueprint == 'user'
+        return True
+
+    @jwt.token_verification_failed_loader
+    def token_verification_failed_callback(jwt_header, jwt_payload):
+        return {'message': '无权访问'}, 403
+
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
         print(f"Token已过期")
@@ -52,6 +63,7 @@ def create_app():
     from routes.analytics import analytics_bp
     from routes.gallery import gallery_bp
     from routes.utils import utils_bp
+    from routes.user import user_bp
     
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(jewelry_bp, url_prefix='/api/jewelry')
@@ -61,6 +73,7 @@ def create_app():
     app.register_blueprint(analytics_bp, url_prefix='/api/analytics')
     app.register_blueprint(gallery_bp, url_prefix='/api/gallery')
     app.register_blueprint(utils_bp, url_prefix='/api/utils')
+    app.register_blueprint(user_bp, url_prefix='/api/user')
     
     # 静态文件服务
     @app.route('/uploads/<path:filename>')

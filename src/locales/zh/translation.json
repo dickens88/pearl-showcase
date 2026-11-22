@@ -314,5 +314,40 @@
         "message": "我们使用Cookie来分析网站访问数据，以改善您的浏览体验。您可以选择接受或拒绝。",
         "accept": "接受",
         "reject": "拒绝"
+    },
+    "user": {
+        "login": "登录",
+        "register": "注册",
+        "logout": "退出登录",
+        "loginTitle": "欢迎回来",
+        "registerTitle": "创建账户",
+        "subtitle": "Chronolume Member",
+        "email": "邮箱",
+        "nickname": "昵称",
+        "optional": "（选填）",
+        "password": "密码",
+        "confirmPassword": "确认密码",
+        "passwordHint": "至少 8 位字符",
+        "submitting": "请稍候…",
+        "noAccount": "还没有账户？",
+        "haveAccount": "已有账户？",
+        "privacyNote": "注册即表示您同意我们保存您的邮箱与收藏记录，仅用于提供账户与收藏功能，不会用于营销或提供给第三方。",
+        "favorite": "收藏",
+        "unfavorite": "取消收藏",
+        "myFavorites": "我的收藏",
+        "favoritesTitle": "我的收藏",
+        "favoritesSubtitle": "My Favorites",
+        "favoritesEmpty": "您还没有收藏任何作品",
+        "browseGallery": "去逛逛珍品陈列",
+        "signedInAs": "当前账户：{{name}}",
+        "errors": {
+            "invalid_email": "请输入有效的邮箱地址",
+            "weak_password": "密码至少需要 8 位字符",
+            "mismatch": "两次输入的密码不一致",
+            "email_taken": "该邮箱已被注册",
+            "invalid_credentials": "邮箱或密码错误",
+            "network": "网络异常，请稍后再试",
+            "unknown": "出现问题，请稍后再试"
+        }
     }
 }

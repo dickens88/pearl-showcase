@@ -314,5 +314,40 @@
         "message": "We use cookies to analyze website traffic and improve your browsing experience. You can accept or reject.",
         "accept": "Accept",
         "reject": "Reject"
+    },
+    "user": {
+        "login": "Sign in",
+        "register": "Create account",
+        "logout": "Sign out",
+        "loginTitle": "Welcome Back",
+        "registerTitle": "Create Account",
+        "subtitle": "Chronolume Member",
+        "email": "Email",
+        "nickname": "Name",
+        "optional": "(optional)",
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "passwordHint": "At least 8 characters",
+        "submitting": "Please wait…",
+        "noAccount": "New here?",
+        "haveAccount": "Already have an account?",
+        "privacyNote": "By creating an account you agree that we store your email and saved pieces solely to provide your account and favorites. We never use them for marketing or share them with third parties.",
+        "favorite": "Save to favorites",
+        "unfavorite": "Remove from favorites",
+        "myFavorites": "My favorites",
+        "favoritesTitle": "My Favorites",
+        "favoritesSubtitle": "Saved Pieces",
+        "favoritesEmpty": "You haven't saved any pieces yet",
+        "browseGallery": "Explore the collection",
+        "signedInAs": "Signed in as {{name}}",
+        "errors": {
+            "invalid_email": "Please enter a valid email address",
+            "weak_password": "Password must be at least 8 characters",
+            "mismatch": "Passwords do not match",
+            "email_taken": "This email is already registered",
+            "invalid_credentials": "Incorrect email or password",
+            "network": "Network error, please try again",
+            "unknown": "Something went wrong, please try again"
+        }
     }
 }

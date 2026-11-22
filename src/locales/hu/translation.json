@@ -314,5 +314,40 @@
         "message": "Sütiket használunk a weboldal forgalmának elemzésére és a böngészési élmény javítására. Elfogadhatja vagy elutasíthatja őket.",
         "accept": "Elfogadom",
         "reject": "Elutasítom"
+    },
+    "user": {
+        "login": "Bejelentkezés",
+        "register": "Regisztráció",
+        "logout": "Kijelentkezés",
+        "loginTitle": "Üdvözöljük újra",
+        "registerTitle": "Fiók létrehozása",
+        "subtitle": "Chronolume Member",
+        "email": "E-mail",
+        "nickname": "Név",
+        "optional": "(nem kötelező)",
+        "password": "Jelszó",
+        "confirmPassword": "Jelszó megerősítése",
+        "passwordHint": "Legalább 8 karakter",
+        "submitting": "Kérjük, várjon…",
+        "noAccount": "Még nincs fiókja?",
+        "haveAccount": "Már van fiókja?",
+        "privacyNote": "A regisztrációval hozzájárul, hogy e-mail-címét és kedvenceit kizárólag a fiók és a kedvencek funkció működtetéséhez tároljuk. Marketingcélra nem használjuk, és harmadik félnek nem adjuk át.",
+        "favorite": "Hozzáadás a kedvencekhez",
+        "unfavorite": "Eltávolítás a kedvencek közül",
+        "myFavorites": "Kedvenceim",
+        "favoritesTitle": "Kedvenceim",
+        "favoritesSubtitle": "Saved Pieces",
+        "favoritesEmpty": "Még nem mentett el egyetlen darabot sem",
+        "browseGallery": "A kollekció megtekintése",
+        "signedInAs": "Bejelentkezve: {{name}}",
+        "errors": {
+            "invalid_email": "Kérjük, adjon meg érvényes e-mail-címet",
+            "weak_password": "A jelszónak legalább 8 karakterből kell állnia",
+            "mismatch": "A két jelszó nem egyezik",
+            "email_taken": "Ez az e-mail-cím már regisztrálva van",
+            "invalid_credentials": "Hibás e-mail-cím vagy jelszó",
+            "network": "Hálózati hiba, kérjük, próbálja újra",
+            "unknown": "Hiba történt, kérjük, próbálja újra"
+        }
     }
 }

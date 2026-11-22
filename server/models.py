@@ -19,6 +19,38 @@ class Admin(db.Model):
         }
 
 
+class User(db.Model):
+    """前台注册用户模型（与管理员 Admin 完全分开）"""
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False, index=True)
+    nickname = db.Column(db.String(50))
+    password_hash = db.Column(db.String(256), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    favorites = db.relationship('Favorite', backref='user', lazy=True, cascade='all, delete-orphan')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'email': self.email,
+            'nickname': self.nickname or self.email.split('@')[0],
+            'created_at': self.created_at.isoformat() if self.created_at else None
+        }
+
+
+class Favorite(db.Model):
+    """用户收藏"""
+    __tablename__ = 'favorites'
+    __table_args__ = (db.UniqueConstraint('user_id', 'jewelry_id', name='uq_user_jewelry'),)
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
+    jewelry_id = db.Column(db.Integer, db.ForeignKey('jewelry.id', ondelete='CASCADE'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+
 class Jewelry(db.Model):
     """饰品模型"""
     __tablename__ = 'jewelry'
@@ -37,6 +69,8 @@ class Jewelry(db.Model):
     
     # 关联图片
     images = db.relationship('Image', backref='jewelry', lazy=True, order_by='Image.order_index')
+    # 被用户收藏的记录（删除饰品时一并清理）
+    favorites = db.relationship('Favorite', backref='jewelry', lazy=True, cascade='all, delete-orphan')
 
     def to_dict(self):
         return {

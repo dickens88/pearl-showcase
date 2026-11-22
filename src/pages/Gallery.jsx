@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import '../styles/pagination.css'
+import FavoriteButton from '../components/FavoriteButton'
 
 function Gallery() {
     const { t, i18n } = useTranslation()
@@ -211,6 +212,7 @@ function Gallery() {
                                             }}
                                         />
                                     )}
+                                    <FavoriteButton jewelryId={item.id} className="on-card" />
                                 </div>
                                 <div className="card-content">
                                     <h3 className="card-title">{isEn ? (item.name_en || item.name) : item.name}</h3>
@@ -353,6 +355,7 @@ function Gallery() {
                             >
                                 ×
                             </button>
+                            <FavoriteButton jewelryId={selectedItem.id} className="in-modal" />
 
                             <h2 style={{
                                 fontFamily: 'var(--font-display)',

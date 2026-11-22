@@ -14,6 +14,9 @@ import JewelryManager from './admin/JewelryManager'
 import ImageManager from './admin/ImageManager'
 import ContentEditor from './admin/ContentEditor'
 import GalleryManager from './admin/GalleryManager'
+import UserAuth from './pages/UserAuth'
+import Favorites from './pages/Favorites'
+import { AuthProvider } from './context/AuthContext'
 
 // 页面跟踪组件
 function PageTracker() {
@@ -32,6 +35,7 @@ function PageTracker() {
 function App() {
     return (
         <BrowserRouter>
+          <AuthProvider>
             <PageTracker />
             <Routes>
                 {/* 前台页面 */}
@@ -76,6 +80,30 @@ function App() {
                     </>
                 } />
 
+                {/* 前台用户 */}
+                <Route path="/login" element={
+                    <>
+                        <Navbar />
+                        <UserAuth mode="login" />
+                        <Footer />
+                    </>
+                } />
+                <Route path="/register" element={
+                    <>
+                        <Navbar />
+                        <UserAuth mode="register" />
+                        <Footer />
+                    </>
+                } />
+                <Route path="/favorites" element={
+                    <>
+                        <Navbar />
+                        <Favorites />
+                        <Footer />
+                        <CookieConsent />
+                    </>
+                } />
+
                 {/* 后台管理页面 */}
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin" element={<Dashboard />} />
@@ -84,6 +112,7 @@ function App() {
                 <Route path="/admin/content" element={<ContentEditor />} />
                 <Route path="/admin/gallery" element={<GalleryManager />} />
             </Routes>
+          </AuthProvider>
         </BrowserRouter>
     )
 }

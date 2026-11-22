@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from './LanguageSwitcher'
+import UserMenu from './UserMenu'
 import '../styles/navbar.css'
 
 function Navbar() {
@@ -51,6 +52,7 @@ function Navbar() {
                 </div>
 
                 <div className="navbar-right">
+                    <UserMenu />
                     <LanguageSwitcher />
 
                     <button
