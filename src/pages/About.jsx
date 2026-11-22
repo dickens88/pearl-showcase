@@ -21,7 +21,8 @@ function About() {
         }
     }
 
-    const isEn = i18n.language === 'en'
+    // Database content only has zh / en fields: any non-Chinese language (en, hu) uses the English version
+    const isEn = !(i18n.resolvedLanguage || i18n.language || 'zh').startsWith('zh')
 
     const defaultContent = {
         title: t('about.title'),

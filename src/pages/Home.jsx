@@ -5,7 +5,8 @@ import '../styles/home.css'
 
 function Home() {
     const { t, i18n } = useTranslation()
-    const isEn = i18n.language === 'en'
+    // Database content only has zh / en fields: any non-Chinese language (en, hu) uses the English version
+    const isEn = !(i18n.resolvedLanguage || i18n.language || 'zh').startsWith('zh')
     const [pageContent, setPageContent] = useState(null)
     const [featuredJewelry, setFeaturedJewelry] = useState([])
     const [galleryImages, setGalleryImages] = useState([])

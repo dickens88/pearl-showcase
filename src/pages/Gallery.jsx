@@ -58,7 +58,8 @@ function Gallery() {
         }
     }
 
-    const isEn = i18n.language === 'en'
+    // Database content only has zh / en fields: any non-Chinese language (en, hu) uses the English version
+    const isEn = !(i18n.resolvedLanguage || i18n.language || 'zh').startsWith('zh')
 
     const getDefaultJewelry = () => [
         { id: 1, name: t('gallery.items.1.name'), name_en: t('gallery.items.1.name'), category: 'earrings', description: t('gallery.items.1.desc'), description_en: t('gallery.items.1.desc'), images: [] },

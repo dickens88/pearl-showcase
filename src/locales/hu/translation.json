@@ -1,0 +1,318 @@
+{
+    "nav": {
+        "home": "Főoldal",
+        "gallery": "Kollekció",
+        "about": "Márka",
+        "knowledge": "Eredet",
+        "contact": "Kapcsolat",
+        "search": "Keresés",
+        "menu": "Menü"
+    },
+    "common": {
+        "noData": "Nincs elérhető adat"
+    },
+    "footer": {
+        "tagline": "2026-ban is tovább keressük azt a melegséget az idő mélyén. Kövesse közösségi oldalainkat, hogy még több történetet megismerjen a gyöngyök mögött.",
+        "quickLinks": "Gyorslinkek",
+        "contactInfo": "Elérhetőség",
+        "address": "B10, Művészeti és Kreatív Park, Huangpu kerület, Sanghaj",
+        "copyright": "© 2026 Chronolume . MINDEN JOG FENNTARTVA."
+    },
+    "home": {
+        "hero": {
+            "year": "Alapítva 2026",
+            "title_p1": "Egy gyöngy,",
+            "title_highlight": "egy életnyi fény.",
+            "desc": "Gondosan válogatott, prémium tengeri gyöngyök, amelyekben a mély óceán ragyogása sűrűsödik; körültekintően kiválasztott, értékes édesvízi gyöngyök, amelyek a hétköznapok textúráit simítják; formagazdag francia barokk stílusok, amelyek a természet kötetlen szépsége előtt tisztelegnek."
+        },
+        "curated": {
+            "title": "Válogatott sorozat",
+            "desc": "Válogatott gyöngyök, letisztult formák – hadd ragyogjon a fény. Belső nyugalom a nyüzsgés közepette, utazás az időn át.",
+            "link": "A teljes kollekció felfedezése"
+        },
+        "gallery": {
+            "title": "MŰVÉSZETI GALÉRIA"
+        },
+        "about": {
+            "label": "FILOZÓFIÁNK",
+            "headline": "Melegség, idő és időtlen történet",
+            "p1": "Az Anlan nyugodt tengereket és tiszta folyókat, a béke idejét idézi;\na Shiguang azt jelenti: összegyűjteni minden szelíd fénysugarat az idő hosszú folyamában.\nA Chronolume mértéke az idő, rímje a gyöngy ragyogása – keleti eleganciát rejt, francia romantikával ötvözi, és a mai nő egyedi viseleti esztétikáját teremti meg.",
+            "p2": "Egy Anlan-gyöngy, amely összegyűjti az idő fényét.\nNem a trendeket követi, csak a minőséget őrzi; nem köti a stílus, csak önmagának tetszik.\n\nA Chronolume a gyöngyöt közegként használja, egyensúlyt teremt minőség és stílus között, nyitott a sokszínű esztétikára, hogy minden önálló, elegáns, az életet szerető nő itt találkozhasson a lelkéhez illő gyöngyfénnyel, egy apró darabban lelje meg nyugodt magabiztosságát, és saját ragyogásában bontakozzon ki.",
+            "stat_bases": "Partner gyöngyfarm",
+            "stat_hours": "Átlagos kézműves óra"
+        },
+        "knowledge_section": {
+            "title": "A GYÖNGY TÖRTÉNETE",
+            "intro": "Ismerje meg, hogyan értékelhet egy valóban gyűjtésre érdemes gyöngyöt.",
+            "items": {
+                "01": {
+                    "title": "Fény",
+                    "desc": "A kiváló minőségű gyöngy fénye olyan, mint egy belső láng: a magból árad kifelé, nem csupán a felszínen pihen."
+                },
+                "02": {
+                    "title": "Forma",
+                    "desc": "A tökéletesen kerek formától a művészi, szabálytalan barokk gyöngyökig minden formának saját kifejezésmódja van."
+                },
+                "03": {
+                    "title": "Felület",
+                    "desc": "Az apró természetes nyomok a természetes eredet bizonyítékai. A tisztaság és a természetes textúra tökéletes egyensúlyára törekszünk."
+                }
+            }
+        }
+    },
+    "about": {
+        "title": "A márka története",
+        "subtitle": "TÖRTÉNETÜNK",
+        "story_text": "A Chronolume a gyöngyök szépsége iránti szeretetből és szenvedélyből született.\n\nHisszük, hogy minden gyöngy a természet és az idő által alkotott műalkotás. A lágy tengervízben évek ülepedése és formálódása után végül egyedi, meleg fényben bontakozik ki. A mélytenger ajándéka a természet legtisztább esztétikáját hordozza.\n\nA márka alapításakor lefektettük „a természet kiválasztása, az elegancia továbbadása” filozófiáját. Csapatunk a világ gyöngytermő vidékeit járta be – az ausztráliai Déli-tengertől a japán Ise-Shimán át a kínai Taihu-tóig és Zhujiig –, hogy megtalálja a tökéletes fényű, tiszta minőségű gyöngyöket.\n\nA tervezésben a keleti esztétika finomságának és a nyugati kézművesség kifinomultságának ötvözésére törekszünk. Minden darab gondos műgonddal készül: megőrzi a gyöngy természetes szépségét, és modern formanyelvet ad neki. Reméljük, hogy aki Chronolume ékszert visel, érzi a mélytenger nyugalmát és eleganciáját.\n\nA Chronolume nem csupán ékszer, hanem életérzés kifejezése is. Meghívjuk, fedezze fel a gyöngyök szépségét, és érezze a természet ajándékának örök varázsát.",
+        "philosophy": {
+            "title": "Tervezési filozófia",
+            "subtitle": "TERVEZÉSI FILOZÓFIA",
+            "items": [
+                {
+                    "title": "A természet szépsége",
+                    "desc": "Tiszteljük minden gyöngy természetes formáját, megőrizzük egyedi fényét és textúráját, hogy a természet szépsége megmutatkozhasson."
+                },
+                {
+                    "title": "A kézművesség öröksége",
+                    "desc": "A hagyományos kézművességet a modern formatervezéssel ötvözzük – minden darab a mester gondosságát és bölcsességét hordozza."
+                },
+                {
+                    "title": "Örök elegancia",
+                    "desc": "A divaton túli, örök szépségre törekszünk, hogy a gyöngyékszer nemzedékről nemzedékre továbbadható kincs legyen."
+                }
+            ]
+        },
+        "history": {
+            "title": "A márka története",
+            "subtitle": "MÉRFÖLDKÖVEK",
+            "events": [
+                {
+                    "year": "2018",
+                    "text": "Megalakul a Chronolume márka, elindul a gyöngyművészet útja."
+                },
+                {
+                    "year": "2019",
+                    "text": "Partnerség az ausztráliai déli-tengeri gyöngyfarmokkal."
+                },
+                {
+                    "year": "2020",
+                    "text": "Megjelenik a „Tenger ritmusa” sorozat, amely szakmai elismerést hoz."
+                },
+                {
+                    "year": "2022",
+                    "text": "Megnyílik élménytérünk, hogy még többen megtapasztalhassák a gyöngyök szépségét."
+                },
+                {
+                    "year": "2024",
+                    "text": "Folytatjuk a felfedezést, és újabb gyöngyművészeti alkotásokat mutatunk be Önnek."
+                }
+            ]
+        }
+    },
+    "gallery": {
+        "title": "Chronolume",
+        "subtitle": "GALÉRIA KOLLEKCIÓ",
+        "items": {
+            "1": {
+                "name": "Holdfény fülbevaló",
+                "desc": "Ausztrál déli-tengeri fehér gyöngy, 12-13 mm, teljes fény. 18 karátos arany foglalat."
+            },
+            "2": {
+                "name": "Óceáni szerelem nyaklánc",
+                "desc": "Válogatott édesvízi gyöngyök, egyenletesek és kerekek. 7-8 mm átmérő, 45 cm hosszúság."
+            },
+            "3": {
+                "name": "Hajnali harmat gyűrű",
+                "desc": "Egyetlen tengeri gyöngy 925-ös ezüst foglalatban. 9-10 mm, rózsaszínes felhang."
+            },
+            "4": {
+                "name": "Csillagfény karkötő",
+                "desc": "Apró édesvízi gyöngyök 14 karátos arany gyöngyökkel. 5-6 mm, 17 cm hosszúság."
+            },
+            "5": {
+                "name": "Felhőfüst fülbevaló",
+                "desc": "Akoya gyöngy fülbevaló, 7-7,5 mm, magas fény, hibátlan. 18 karátos arany hátlap."
+            },
+            "6": {
+                "name": "Áradó fény bross",
+                "desc": "Barokk gyöngy Swarovski kristályokkal. Egyedi, művészi forma."
+            },
+            "7": {
+                "name": "Esőcseppek nyakpánt",
+                "desc": "Tahiti fekete gyöngy nyakpánt, 10-11 mm, pávazöld felhang."
+            },
+            "8": {
+                "name": "Egyszerű elegáns medál",
+                "desc": "Egyetlen édesvízi gyöngy medál, 11-12 mm, tökéletesen kerek. Egyszerű ezüst foglalat."
+            }
+        },
+        "categories": {
+            "all": "Összes",
+            "earrings": "Fülbevalók",
+            "rings": "Gyűrűk",
+            "necklaces": "Nyakláncok",
+            "bracelets": "Karkötők",
+            "brooches": "Brossok",
+            "sets": "Szettek",
+            "baroque": "Barokk",
+            "designer": "Dizájner"
+        }
+    },
+    "knowledge": {
+        "main_title": "Gyöngyismeret",
+        "main_subtitle": "GYÖNGYISMERET",
+        "origin_label": "Származás",
+        "tabs": {
+            "types": "Fajták",
+            "quality": "Minőség",
+            "care": "Ápolás",
+            "culture": "Kultúra"
+        },
+        "content": {
+            "types": {
+                "title": "A gyöngyök fajtái",
+                "intro": "A világ vizei különböző fajtájú gyöngyöket nevelnek, mindegyiknek megvan a maga egyedi varázsa és értéke.",
+                "items": [
+                    {
+                        "name": "Déli-tengeri gyöngy",
+                        "origin": "Ausztrália, Indonézia, Fülöp-szigetek",
+                        "desc": "A legnagyobb gyöngyfajta, szaténszerű fényéről ismert.",
+                        "features": [
+                            "Nagy méret",
+                            "Szaténfény",
+                            "Ritka"
+                        ]
+                    },
+                    {
+                        "name": "Akoya gyöngy",
+                        "origin": "Japán, Kína",
+                        "desc": "Klasszikus tengeri gyöngy, tökéletes kerekségéről és tükörfényéről ismert.",
+                        "features": [
+                            "Tökéletesen kerek",
+                            "Magas fény",
+                            "Klasszikus"
+                        ]
+                    },
+                    {
+                        "name": "Tahiti gyöngy",
+                        "origin": "Francia Polinézia",
+                        "desc": "Az egyetlen természetes fekete gyöngy, titokzatos fémes felhangokkal.",
+                        "features": [
+                            "Természetes fekete",
+                            "Titokzatos",
+                            "Egyedi"
+                        ]
+                    },
+                    {
+                        "name": "Édesvízi gyöngy",
+                        "origin": "Kína",
+                        "desc": "Változatos formák és színek, kiváló ár-érték arány a mindennapi viselethez.",
+                        "features": [
+                            "Változatos formák",
+                            "Gazdag színek",
+                            "Megfizethető"
+                        ]
+                    }
+                ]
+            },
+            "quality": {
+                "title": "A minőség megítélése",
+                "intro": "Ismerje meg a szempontokat, hogy jobban értékelhesse minden gyöngy egyedi szépségét.",
+                "items": [
+                    {
+                        "name": "Fény",
+                        "desc": "A legfontosabb tényező. A kiváló minőség éles, tükörszerű visszaverődést jelent."
+                    },
+                    {
+                        "name": "Felület",
+                        "desc": "A felület tisztasága. Az apró természetes nyomok elfogadhatók."
+                    },
+                    {
+                        "name": "Forma",
+                        "desc": "A kerek a legritkább, de a közel kerek és a barokk formáknak is egyedi varázsuk van."
+                    },
+                    {
+                        "name": "Méret",
+                        "desc": "A nagyobb általában ritkább. Válasszon stílusa és ízlése szerint."
+                    },
+                    {
+                        "name": "Szín",
+                        "desc": "Magában foglalja az alapszínt és a felhangokat. Válassza a bőrtónusához illőt."
+                    },
+                    {
+                        "name": "Összeillés",
+                        "desc": "Méret, szín és fény egyöntetűsége a gyöngysorokban és párokban."
+                    }
+                ]
+            },
+            "care": {
+                "title": "Ápolási útmutató",
+                "intro": "A gyöngyök szerves drágakövek, amelyek gyengéd ápolást igényelnek.",
+                "items": [
+                    {
+                        "name": "Kerülje a vegyszereket",
+                        "desc": "Tartsa távol parfümtől, sminktől, hajlakktól."
+                    },
+                    {
+                        "name": "Kerülje a hőt és a szárazságot",
+                        "desc": "Ne tárolja közvetlen napfényen vagy fűtőtest közelében."
+                    },
+                    {
+                        "name": "Tárolja külön",
+                        "desc": "Használjon puha tasakot a karcolódás elkerülésére."
+                    },
+                    {
+                        "name": "Tisztítsa rendszeresen",
+                        "desc": "Viselés után törölje át puha kendővel."
+                    },
+                    {
+                        "name": "Viselje gyakran",
+                        "desc": "A bőr természetes olajai segítenek hidratáltan tartani."
+                    },
+                    {
+                        "name": "Ellenőrizze rendszeresen",
+                        "desc": "A nyakláncokat 1-2 évente fűzesse újra."
+                    }
+                ]
+            },
+            "culture": {
+                "title": "Kultúra és történelem",
+                "intro": "A gyöngyöknek hosszú története és gazdag kulturális jelentése van.",
+                "items": [
+                    {
+                        "name": "Keleti kultúra",
+                        "desc": "A tisztaság, a bölcsesség és a gazdagság jelképe."
+                    },
+                    {
+                        "name": "Nyugati kultúra",
+                        "desc": "Aphroditéhoz és a nemességhez kapcsolódik."
+                    },
+                    {
+                        "name": "A tenyésztés forradalma",
+                        "desc": "Mikimoto találmánya elhozta a gyöngyöket az egész világnak."
+                    },
+                    {
+                        "name": "Modern divat",
+                        "desc": "Időtlen és sokoldalú a modern formatervezésben."
+                    }
+                ]
+            }
+        }
+    },
+    "contact": {
+        "title": "Kapcsolat",
+        "subtitle": "LÉPJEN KAPCSOLATBA VELÜNK",
+        "intro": "Köszönjük érdeklődését a Chronolume iránt. \nHa többet szeretne megtudni, kérjük, vegye fel velünk a kapcsolatot.",
+        "email": "E-mail",
+        "social": "Közösségi média",
+        "response_time": "Válaszidő",
+        "days": "Hétfő - Péntek",
+        "hours": "10:00 - 18:00",
+        "footer_note": "Elkötelezettek vagyunk a gyöngykultúra és a kézművesség szépségének megosztása iránt.\nVárjuk jelentkezését."
+    },
+    "cookie": {
+        "message": "Sütiket használunk a weboldal forgalmának elemzésére és a böngészési élmény javítására. Elfogadhatja vagy elutasíthatja őket.",
+        "accept": "Elfogadom",
+        "reject": "Elutasítom"
+    }
+}
